@@ -1,0 +1,796 @@
+/* Case study — Figma "Campaign creation" (831:17538).
+   Builds on styles.css (tokens, nav, .hand, sprite layers).
+   Positions are taken from the 1440px Figma frame. */
+
+.cs {
+  --blue: #1578e0;
+  --ink: #14181b;
+  --body: #333333;
+  --muted: #676e73;
+  color: var(--ink);
+}
+
+.cs main { overflow-x: clip; }
+
+/* ---------- Shared type ---------- */
+.cs-block { width: 740px; margin: 0 auto; }
+.cs-block--center { width: 600px; text-align: center; }
+
+.cs-label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.cs-label--center { text-align: center; }
+.cs-label--lg { font-size: 18px; font-weight: 700; letter-spacing: .3px; margin-bottom: 12px; }
+
+.cs-h2 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.cs-h2--center { text-align: center; }
+.cs-h2--nowrap { white-space: nowrap; margin-inline: -200px; }
+
+.cs-p {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 23px;
+  color: var(--body);
+}
+.cs-p--lg { font-size: 16px; line-height: 23px; }
+.cs-p--sm { margin-top: 8px; font-size: 14px; line-height: 19px; }
+
+.cs-caption {
+  margin-top: 64px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #919293;
+  text-align: center;
+}
+
+/* ---------- Nav (same component as the homepage) ---------- */
+.nav.is-case { position: fixed; }
+
+/* ---------- Hero ---------- */
+.cs-hero {
+  position: relative;
+  height: 725px;
+  overflow: hidden;
+}
+.cs-hero__grid {
+  position: absolute;
+  left: calc(var(--stage) + 200px);
+  top: 60px;
+  width: 1041px;
+  height: 641px;
+  background-image:
+    linear-gradient(to right, var(--grid) 0.75px, transparent 0.75px),
+    linear-gradient(to bottom, var(--grid) 0.75px, transparent 0.75px);
+  background-size: 60px 60px;
+}
+.cs-hero__inner {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  padding: 196px 0 0 1px;
+  display: flex;
+  gap: 32px;
+}
+.cs-hero__shot { width: 800px; height: 446px; flex: none; }
+.cs-hero__text { width: 446px; flex: none; }
+.cs-hero__title {
+  width: 547px;
+  font-size: 48px;
+  line-height: 53px;
+  font-weight: 500;
+  letter-spacing: -.5px;
+}
+.cs-hero__sub {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--body);
+}
+.cs-meta { margin: 32px 0 0; display: grid; gap: 24px; }
+.cs-meta dt {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.cs-meta dd {
+  margin: 4px 0 0;
+  font-size: 16px;
+  line-height: 23px;
+  color: var(--body);
+}
+
+/* ---------- The problem ---------- */
+.cs-problem { padding: 120px 0 0; height: 775px; }
+.cs-problem__tag { position: relative; width: 251px; height: 71px; margin-bottom: 32px; }
+.cs-problem__note { width: 251px; height: 71px; position: relative; }
+/* Bulb: 128px box, 100px inner rotated −19.95° (Figma group inset) */
+.cs-problem__bulb {
+  position: absolute;
+  left: calc(-92.56px + 14px + 9.11px);
+  top: calc(-68.56px + 14px + 7.2px);
+  width: 81.88px;
+  height: 86px;
+  transform-origin: calc(50% + 0.05px) calc(50% - 0.2px);
+  transform: rotate(-19.95deg);
+}
+
+.chat {
+  position: relative;
+  width: 1175px;
+  height: 254px;
+  margin: 56px auto 0;
+  left: -0.5px;
+}
+.chat__msg { position: absolute; padding: 12px 8px; }
+.chat__msg--l1 { left: 21px; top: 0; }
+.chat__msg--l2 { left: 57px; top: 98px; }
+.chat__msg--r1 { left: 677px; top: 80px; }
+.chat__msg--r2 { left: 691px; top: 161px; }
+
+.bubble {
+  position: relative;
+  width: 424px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.44;
+  letter-spacing: -.042px;
+  color: #000;
+  transition: transform .35s var(--ease-spring);
+}
+.bubble--blue { background: #bde3ff; transform-origin: 100% 100%; }
+.bubble--purple { background: #e4ccff; transform-origin: 0 100%; }
+.chat__msg--l1 .bubble { padding: 16px; }
+.chat__msg--l2 .bubble { width: auto; padding: 12px 24px; white-space: nowrap; }
+
+/* Tails sit in a 14px slot outside the bubble and tuck under its edge */
+.bubble__tail { position: absolute; top: 0; height: 100%; }
+.bubble--purple .bubble__tail { left: -14px; }
+.bubble--blue .bubble__tail { right: -14px; transform: scaleX(-1); }
+.chat__msg--l1 .bubble__tail { width: 24.89px; }
+.chat__msg--l2 .bubble__tail { width: 27.48px; }
+.chat__msg--r1 .bubble__tail { width: 30.78px; }
+.chat__msg--r2 .bubble__tail { width: 31.42px; }
+.bubble:hover { transform: scale(1.03); }
+
+.chat__avatar { position: absolute; }
+.chat__avatar--man { left: 455px; top: 85px; width: 100px; height: 98.3px; object-fit: cover; }
+.chat__avatar--woman { left: 613px; top: 153px; width: 100px; height: 100px; object-fit: cover; object-position: 0 0; }
+
+/* ---------- Before / After toggle ---------- */
+.cs-compare {
+  position: relative;
+  width: 1440px;
+  height: 705px;
+  margin: 0 auto;
+}
+.cs-compare__title {
+  height: 36px;
+  font-size: 18px;
+  line-height: 36px;
+  font-weight: 500;
+  text-align: center;
+}
+.toggle {
+  position: absolute;
+  left: 50%;
+  top: 78px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: "Inter", var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -.3px;
+  cursor: pointer;
+}
+.toggle__label { color: #676e73; transition: color .3s var(--ease-out); }
+.toggle__label--before { color: #000; }
+.toggle__track {
+  display: flex;
+  width: 44px;
+  padding: 4px;
+  border-radius: 99px;
+  background: #acb1b4;
+  transition: background-color .3s var(--ease-out);
+}
+.toggle__knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
+  transition: transform .3s var(--ease-spring);
+}
+.toggle[aria-checked="true"] .toggle__track { background: #3186df; }
+.toggle[aria-checked="true"] .toggle__knob { transform: translateX(20px); }
+.toggle[aria-checked="true"] .toggle__label--before { color: #676e73; }
+.toggle[aria-checked="true"] .toggle__label--after { color: var(--ink); }
+.toggle:focus-visible { outline: 2px solid #3186df; outline-offset: 4px; border-radius: 99px; }
+
+/* Figma "Group 2" (220, 144). In both variants the app screen sits at (60, 0) inside the group; the
+   exports include the washi tape and shadow overflow, hence the negative tops (from the render bounds).
+   The incoming state fades in on top first, then the outgoing one fades out underneath, so the screen
+   never goes see-through mid-transition and nothing moves. */
+.cs-compare__stage { position: absolute; left: 220px; top: 144px; width: 1000px; height: 560.5px; }
+.cs-compare__img {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .3s ease .2s;
+}
+.cs-compare__img--before { top: 0; width: 1000px; height: 560.5px; }
+/* Screen: Figma rect 888.9 × 503.1 at (60.08, 0), image fill + 5% black, own shadow + the variant shadow */
+.before__screen {
+  position: absolute;
+  left: 60.08px;
+  top: 0;
+  width: 888.9px;
+  height: 503.11px;
+  overflow: hidden;
+  box-shadow: 0 8.16px 16.31px #ced1d3, 0 12px 36px #ced1d3;
+}
+.before__screen img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); } /* Figma fill: saturation −1 */
+.before__screen::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .05); }
+/* Tapes at their Figma render bounds */
+.before__tape { position: absolute; }
+.before__tape--tr { left: 770.01px; top: -36.2px; width: 254px; height: 176px; mix-blend-mode: color-dodge; }
+.before__tape--bl { left: 4.25px; top: 381.22px; width: 253px; height: 176px; mix-blend-mode: plus-lighter; }
+/* White silhouettes underneath: give the tapes their body on the white page and cast the variant shadow */
+.before__tape--shape { mix-blend-mode: normal; filter: brightness(0) invert(1) drop-shadow(0 12px 36px #ced1d3); }
+.cs-compare__img--after  { top: 0; width: 1000px; height: 560.5px; filter: drop-shadow(0 12px 36px #ced1d3); }
+.after__screen { position: absolute; left: 60.01px; top: 0; width: 885px; height: 498px; }
+.after__tape { position: absolute; width: 257px; height: 181px; }
+.after__tape--tr { left: 771.03px; top: -49.75px; }
+.after__tape--bl { left: 3.77px; top: 373.29px; }
+.cs-compare__img.is-active { z-index: 2; opacity: 1; transition: opacity .4s cubic-bezier(.4, 0, .2, 1); }
+
+/* ---------- Goals ---------- */
+.cs-goals { height: 705px; padding-top: 120px; }
+.cs-goals .cs-block { width: 738px; filter: drop-shadow(0 12px 18px #ced1d3); }
+.goals { margin-top: 64px; list-style: none; padding: 0; display: grid; gap: 32px; }
+.goals li { position: relative; height: 90px; display: flex; align-items: center; }
+.goal__badge { position: absolute; left: 0; top: 0; width: 90px; height: 90px; opacity: .1; }
+.goal__badge img { position: absolute; left: -1.5px; top: -1.6px; width: 93px; height: 94px; }
+.goals p {
+  position: relative;
+  white-space: nowrap;
+  margin-left: 66px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #111827;
+}
+.goals b { font-weight: 700; }
+.goal__badge { transition: opacity .35s var(--ease-out), transform .45s var(--ease-spring); }
+.goals li:hover .goal__badge { opacity: .35; transform: rotate(-8deg); }
+
+/* ---------- Rethinking ---------- */
+.cs-rethink { padding-top: 120px; height: 817.6px; }
+.cs-rethink .cs-h2 { margin-top: 0; }
+.rethink {
+  width: 1120px;
+  margin: 64px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pill {
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.pill--before { background: #f2e5e5; color: #b24040; }
+.pill--after  { background: #e0f5e0; color: #2e8c40; margin-top: 48px; }
+
+.flow { list-style: none; padding: 0; display: flex; align-items: flex-start; justify-content: center; }
+.flow--before { margin-top: 24px; column-gap: 22px; }
+.flow--after { margin-top: 24px; column-gap: 24px; }
+
+.step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 98.5px; }
+.flow--after .step { width: auto; }
+.step__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  padding: 15px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 34px;
+  line-height: 1;
+  transition: transform .35s var(--ease-spring);
+}
+.step__icon > img:first-child { width: 40px; height: 40px; }
+.step__icon--lg { width: 74.75px; height: 74.75px; padding: 18.69px; }
+.step__icon--lg > img:first-child { width: 37.37px; height: 37.37px; }
+.step:first-child:has(.step__icon--lg) { width: 149.5px; }
+.step__label { margin-top: 22px; font-size: 14px; line-height: 19px; color: var(--ink); }
+.flow--before .step:first-child .step__label { margin-top: 20px; }
+.step__label--lg { margin-top: 6px; font-size: 17px; line-height: 23px; white-space: nowrap; }
+.step__q { margin-top: 20px; font-size: 17px; line-height: 23px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; }
+.step:hover .step__icon { transform: translateY(-4px) scale(1.06); }
+
+.flow__arrow img { width: 51px; height: 14.73px; }
+.flow--before .flow__arrow { margin-top: 59px; }
+.flow--after .flow__arrow { margin-top: 65px; }
+
+/* WHAT: channel cluster in a dashed ring */
+.step__channels {
+  position: absolute;
+  left: 54px; /* Figma: 89px from the step box, which is 35px wider than the circle on each side */
+  top: -6px;
+  width: 82px;
+  height: 82px;
+  border: .5px dashed #757575;
+  border-radius: 50%;
+}
+.ch { position: absolute; width: 25.95px; height: 25.95px; transition: transform .4s var(--ease-spring); }
+.ch--sms { left: 12.5px; top: 32.73px; }
+.ch--rcs { left: 27.09px; top: 17.32px; }
+.ch--wa  { left: 46.55px; top: 32.73px; }
+.step:hover .ch--sms { transform: translate(-3px, 3px); }
+.step:hover .ch--rcs { transform: translateY(-4px); }
+.step:hover .ch--wa  { transform: translate(3px, 3px); }
+.step__sparkle { position: absolute; left: 51.67px; top: -5px; width: 30px; height: 30px; transition: transform .5s var(--ease-spring); }
+.step:hover .step__sparkle { transform: rotate(20deg) scale(1.15); }
+
+.rethink__caption {
+  margin-top: 48px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f2f2f2;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--ink);
+}
+.rethink__caret {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-top: 16px;
+  border-radius: 50%;
+  background: rgba(184, 189, 194, .2);
+}
+.rethink__caret img { width: 19.2px; height: 19.2px; animation: caret-bob 1.8s ease-in-out infinite; }
+@keyframes caret-bob { 50% { transform: translateY(3px); } }
+
+/* ---------- Starting with intent ---------- */
+.cs-intent { padding-top: 120px; height: 872px; }
+.cs-intent .cs-block { width: 740px; }
+.intent {
+  position: relative;
+  width: 1118px;
+  height: 394px;
+  margin: 84px auto 0;
+}
+.intent__shot { position: absolute; left: 204.3px; top: -4.7px; width: 710px; height: 404px; }
+
+.note p {
+  width: 173px;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -.42px;
+  text-align: center;
+  color: var(--body);
+}
+.note b { font-weight: 700; color: var(--ink); }
+.note__line { width: 82.33px; height: 5.34px; flex: none; }
+
+.note--intent-right { position: absolute; left: 847px; top: 234px; display: flex; align-items: center; }
+.note--intent-right .note__line { transform: rotate(180deg); }
+.note--intent-left { position: absolute; left: 12px; top: 10px; width: 179px; }
+.note--intent-left p { width: 179px; }
+
+/* Rotated connector lines: outer box = Figma bounds, inner = unrotated node */
+.rot-line { position: absolute; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.rot-line > span { position: relative; flex: none; }
+.rot-line img { position: absolute; max-width: none; }
+.rot-line--intent-left { left: 70px; top: 94.93px; width: 272px; height: 94px; }
+.rot-line--intent-left > span { width: 94px; height: 272px; transform: rotate(-90deg); }
+.rot-line--intent-left img { top: -0.96%; right: -2.84%; bottom: -0.98%; left: -2.84%; width: 105.68%; height: 101.94%; }
+
+/* ---------- Deep dive / iterations ---------- */
+.cs-deep { padding-top: 120px; }
+
+.tabset { position: relative; margin: 24px auto 0; }
+.tabset--iter { width: 830px; }
+.tabset--channel { width: 1118px; margin-top: 48px; }
+
+.seg {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid #e5e7e8;
+  border-radius: 8px;
+  background: #fdfbfb;
+}
+.seg__item {
+  min-width: 80px;
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 23px;
+  color: #555657;
+  cursor: pointer;
+  transition: background-color .25s var(--ease-out), box-shadow .25s var(--ease-out), color .25s var(--ease-out);
+}
+.seg__item:hover:not(.is-active) { color: var(--ink); background: rgba(230, 230, 230, .4); }
+.seg__item.is-active {
+  background: #fff;
+  box-shadow: 0 2px 6px #ced1d3;
+  font-weight: 600;
+  color: var(--ink);
+}
+.seg__item:focus-visible { outline: 2px solid #3186df; outline-offset: 2px; }
+
+.tabset__stage {
+  position: relative;
+  margin-top: 26px; /* tab bar + gap = 83px, as in the Figma instance */
+  transition: height .35s var(--ease-out);
+}
+.tabset__panel {
+  position: absolute;
+  display: flow-root;
+  inset: 0 0 auto 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease-out, visibility 0s linear .3s;
+}
+.tabset__panel.is-active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .3s ease-out, visibility 0s;
+}
+
+/* Iteration exports include the tab bar (top 83px) and the component-set
+   border on the left — both are clipped off here. */
+.iter { margin-top: -83px; clip-path: inset(83px 0 0 0); }
+.iter--final  { width: 1105px; margin-left: -147px; }
+.iter--2      { width: 1089px; margin-left: -127px; }
+.iter--1      { width: 1089px; margin-left: -126.8px; }
+.iter--before { width: 830px; }
+.tabset--iter .tabset__panel { height: auto; }
+.tabset--iter .tabset__panel > .iter { margin-bottom: 0; }
+
+.channel { width: 1118px; height: 425px; margin-top: -17px; }
+
+/* ---------- Who / What / When ---------- */
+.cs-www { padding-top: 0; }
+.www { position: relative; width: 1120px; margin: 0 auto; padding-top: 1334px; } /* rows A–C are absolute; the AI panel flows below them */
+.www__row { position: absolute; left: 0; width: 1120px; }
+.www__row--who  { top: 0; height: 405px; }
+.www__row--what { top: 484px; height: 345px; }
+.www__row--when { top: 909px; height: 425px; }
+
+.www__text { position: absolute; }
+.www__row--who  .www__text { left: 0; top: 147px; width: 455px; }
+.www__row--what .www__text { left: 714px; top: 88px; width: 406px; }
+.www__row--when .www__text { left: 0; top: 88px; width: 372px; }
+
+.video-frame { position: absolute; width: 600px; height: 345px; transition: transform .45s var(--ease-out), filter .45s var(--ease-out); }
+.video-frame img { width: 600px; height: 345px; }
+.video-frame--when { border-radius: 14.53px; overflow: hidden; } /* 3x render of the Figma frame; corners clipped to its radius */
+.www__row--who  .video-frame { left: 520px; top: 60px; }
+.www__row--what .video-frame { left: 0; top: 0; }
+.www__row--when .video-frame { left: 520px; top: 0; }
+.video-frame:hover { transform: translateY(-4px); filter: drop-shadow(0 16px 24px rgba(20, 24, 27, .08)); }
+
+.hand--who  { width: 88px;  height: 41px; margin: 7.7px 0 0 4.4px; -webkit-mask-image: url("assets/case/hand/who.svg");  mask-image: url("assets/case/hand/who.svg"); }
+.hand--what { width: 124px; height: 42px; margin: 7.7px 0 0 4.4px; -webkit-mask-image: url("assets/case/hand/what.svg"); mask-image: url("assets/case/hand/what.svg"); }
+.hand--when { width: 126px; height: 41px; margin: 7.7px 0 0 4.4px; -webkit-mask-image: url("assets/case/hand/when.svg"); mask-image: url("assets/case/hand/when.svg"); }
+.hand--ai   { width: 366px; height: 51px; margin: 7.7px 0 0 2.9px; -webkit-mask-image: url("assets/case/hand/ai-implementation.svg"); mask-image: url("assets/case/hand/ai-implementation.svg"); color: rgba(192, 192, 192, .8); }
+.www__text .hand { color: rgba(210, 210, 210, .8); }
+
+.www__label {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.www__label--nowrap { white-space: nowrap; }
+
+.rot-line--when { left: -38.75px; top: 160.41px; width: 292.3px; height: 293.3px; }
+.rot-line--when > span { width: 291.6px; height: 290.6px; transform: rotate(-90.33deg); }
+.rot-line--when img { top: -0.33%; right: -1.78%; bottom: -1.56%; left: -1.83%; width: 103.61%; height: 101.89%; }
+
+.bridge-pill {
+  position: absolute;
+  left: 154px;
+  top: 360.4px;
+  width: 132px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e5e7e8;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 3px #ced1d3;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  color: #3186df;
+}
+
+/* AI implementation panel */
+.ai-panel {
+  position: relative;
+  width: 1120px;
+  padding: 40px 60px 64px;
+  border-radius: 24px;
+  background:
+    linear-gradient(90deg, rgba(222, 127, 61, .04) 0%, rgba(208, 83, 167, .04) 40%, rgba(117, 76, 238, .04) 100%),
+    #fff;
+}
+.ai-panel__head { position: relative; width: 600px; }
+.ai-panel__icon { position: absolute; left: 350px; top: -16px; width: 48px; height: 48px; animation: ai-twinkle 3.2s ease-in-out infinite; }
+@keyframes ai-twinkle { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.12) rotate(12deg); } }
+.ai-panel .www__label { margin-top: 32px; }
+.ai-panel__title { margin-top: 16px; font-size: 28px; line-height: 36px; font-weight: 500; color: var(--ink); }
+
+/* AI scheduling stepper: step list on the left, one 600px screen on the right (same scale as rows A–C) */
+.ai-flow {
+  display: grid;
+  grid-template-columns: 340px 600px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+}
+.ai-flow__steps { display: grid; gap: 8px; }
+.ai-flow__step {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 14px 0 14px 22px;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+/* progress track: grey rail, AI-gradient fill on the active step */
+.ai-flow__step::before,
+.ai-flow__step::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: #e5e7e8;
+}
+.ai-flow__step::after { background: var(--ai-grad); transform: scaleY(0); transform-origin: top; }
+.ai-flow__step.is-active::after { transform: scaleY(1); }
+.ai-flow.is-playing .ai-flow__step.is-active::after { animation: ai-fill var(--ai-step-ms, 3600ms) linear both; }
+@keyframes ai-fill { from { transform: scaleY(0); } }
+.ai-flow__step:focus-visible { outline: 2px solid #3186df; outline-offset: 4px; border-radius: 4px; }
+.ai-flow__title { font-size: 18px; line-height: 24px; font-weight: 600; color: #919293; transition: color .3s var(--ease-out); }
+.ai-flow__text { font-size: 16px; line-height: 23px; color: #919293; transition: color .3s var(--ease-out); }
+.ai-flow__step.is-active .ai-flow__title,
+.ai-flow__step:hover .ai-flow__title { color: var(--ink); }
+.ai-flow__step.is-active .ai-flow__text { color: var(--gray-1, #5c6266); }
+
+.ai-flow__stage { position: relative; height: 360px; }
+.ai-flow__screen {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 600px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(calc(-50% + 8px));
+  transition: opacity .4s var(--ease-out), transform .5s var(--ease-out);
+  pointer-events: none;
+}
+.ai-flow__screen.is-active { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+
+/* ---------- Modal ---------- */
+.cs-modal { padding-top: 120px; }
+
+/* ---------- Final preview ---------- */
+.cs-final { position: relative; height: 783px; padding-top: 120px; }
+.cs-final .cs-h2 { margin-top: 0; }
+.final { position: absolute; left: var(--stage); top: 0; width: 1440px; height: 783px; pointer-events: none; }
+.final > * { pointer-events: auto; }
+.final__shot { position: absolute; left: 357px; top: 251px; width: 731px; height: 417px; filter: drop-shadow(0 12px 36px #ced1d3); } /* Figma frame 831:17970 drop shadow */
+.final__doodle {
+  position: absolute;
+  left: 1073.58px; /* Figma 836:23379 x (rotated node, so its own origin, not the bounding box) */
+  top: 528.64px;
+  width: 160.62px;
+  height: 152.48px;
+  transform-origin: 0 0;
+  transform: rotate(7deg);
+  outline: none;
+}
+.final__doodle .polaroid__img::after { display: none; }
+.final__doodle.is-waving .sprite--arm         { animation: arm-lift 1.8s ease-in-out; }
+.final__doodle.is-waving .sprite-layer--hand  { animation: hand-wave .45s ease-in-out 4; }
+.final__doodle.is-waving .sprite--marks       { animation: wave-marks .45s ease-in-out 4; }
+.final__doodle.is-waving .sprite--eye         { animation: eyes-squint 1.8s ease-in-out; }
+.final__doodle.is-waving .sprite--happy-eyes  { animation: eyes-happy 1.8s ease-in-out; }
+
+/* ---------- Impact ---------- */
+.cs-impact { width: 1440px; margin: 0 auto; padding: 0 160px 96px; }
+.cs-impact .cs-label { font-size: 16px; line-height: 22px; letter-spacing: .7px; }
+.metrics { margin-top: 64px; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.metric {
+  padding: 28px 24px;
+  border-radius: 12px;
+  background: #f6f7f9;
+  transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease-out);
+}
+.metric:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -12px rgba(20, 24, 27, .15); }
+.metric__value { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--ink); }
+.metric__arrow { margin-right: -4px; font-weight: 500; color: #219652; }
+.metric__label { margin-top: 8px; font-size: 14px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.cs-impact__end {
+  margin-top: 64px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -.2px;
+  color: var(--muted);
+}
+.cs-back {
+  display: inline-flex;
+  margin-top: 48px;
+  padding: 10px 18px;
+  border: 1px solid var(--gray-5);
+  border-radius: 99px;
+  font-size: 14px;
+  color: var(--gray-1);
+  transition: background-color .25s var(--ease-out);
+}
+.cs-back:hover { background: rgba(230, 230, 230, .4); }
+
+/* ---------- Smaller screens: the 1440 frame is scaled to fit (case-study.js sets --cs-zoom) ---------- */
+.cs main, .cs-hero { zoom: var(--cs-zoom, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs *, .cs *::before, .cs *::after { animation: none !important; transition-duration: .01ms !important; }
+}
+
+
+/* ---------- C.1 — AI scheduling as an extension of step C ----------
+   The "C.1" badge uses the panel's own AI gradient. Hovering the connector pill lights up the panel. */
+.cs { --ai-grad: linear-gradient(90deg, #de7f3d 0%, #d053a7 40%, #754cee 100%); --ai-ink: #754cee; }
+
+.ai-jump__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--ai-grad);
+  font: 700 11px/16px var(--font-sans);
+  letter-spacing: .4px;
+  color: #fff;
+  vertical-align: 2px;
+}
+.ai-jump__badge--lg { padding: 3px 8px; font-size: 13px; line-height: 17px; margin-right: 6px; vertical-align: 1px; }
+
+/* Connector pill becomes a link */
+a.bridge-pill { gap: 4px; display: flex; justify-content: center; align-items: center; transition: box-shadow .25s var(--ease-out), transform .25s var(--ease-out); }
+a.bridge-pill:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(49, 134, 223, .25); }
+
+/* Panel: faint gradient edge, so it reads as "the AI part of C" */
+.ai-panel { box-shadow: inset 0 0 0 1px rgba(117, 76, 238, .1); transition: box-shadow .35s var(--ease-out); scroll-margin-top: 110px; }
+.ai-panel.is-linked { box-shadow: inset 0 0 0 1px rgba(117, 76, 238, .28), 0 18px 40px -24px rgba(117, 76, 238, .35); }
+
+
+.ai-flow__screen img { display: block; width: 100%; height: auto; }
+.ai-emoji { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.ai-emoji text { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
+
+/* Chart / Table switch for step 3 (mirrors the card's own Visualiser / Table toggle) */
+.ai-flow__view {
+  display: inline-flex;
+  margin: 16px 0 0 22px;
+  padding: 3px;
+  border-radius: 99px;
+  background: #f1f1f2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s var(--ease-out), visibility .3s;
+}
+.ai-flow.is-step-3 .ai-flow__view { opacity: 1; visibility: visible; }
+.ai-flow__view button {
+  padding: 4px 14px;
+  border: 0;
+  border-radius: 99px;
+  background: none;
+  font: 500 13px/18px var(--font-sans);
+  color: #676e73;
+  cursor: pointer;
+}
+.ai-flow__view button.is-on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(20, 24, 27, .12); }
+.ai-flow__view button:focus-visible { outline: 2px solid #3186df; outline-offset: 2px; }
+
+/* ---------- AI in my process (before Impact) ---------- */
+.cs-process { width: 1440px; margin: 0 auto; padding: 0 160px 120px; }
+.cs-process .cs-label { font-size: 16px; line-height: 22px; letter-spacing: .7px; }
+.cs-process .cs-p { max-width: 720px; }
+.tools { display: flex; gap: 8px; margin-top: 24px; list-style: none; padding: 0; }
+.tools li {
+  padding: 4px 12px;
+  border: 1px solid rgba(117, 76, 238, .25);
+  border-radius: 99px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--ai-ink);
+}
+.process { margin-top: 40px; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.process__card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 28px 24px;
+  border-radius: 12px;
+  background: #f6f7f9;
+  transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease-out);
+}
+.process__card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -12px rgba(20, 24, 27, .15); }
+.process__title { font-size: 18px; line-height: 24px; font-weight: 600; color: var(--ink); }
+.process__row { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; font-size: 15px; line-height: 22px; color: var(--gray-1, #5c6266); }
+.process__who {
+  display: inline-grid;
+  place-items: center;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: #fff;
+}
+.process__who--ai { background: var(--ai-grad); }
+
+/* ---------- Up next: the segmentation case study card (shared .case styles from styles.css) ---------- */
+.cs-next { width: 1153px; margin: 0 auto; padding: 0 0 120px; }
+.cs-next .cs-label { font-size: 16px; line-height: 22px; letter-spacing: .7px; margin-bottom: 24px; }
+.cs-next__soon {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: #ecf9f2;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #219652;
+}

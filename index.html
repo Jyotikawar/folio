@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jyoti Kawar — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@5.2.3/400.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@5.2.3/600.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@5.2.3/700.css" rel="stylesheet" />
+  <!-- bump ?v= after editing so browsers don't serve a cached copy -->
+  <link rel="stylesheet" href="styles.css?v=38" />
+  <script src="main.js?v=23" defer></script>
+</head>
+<body>
+
+  <!--
+    HERO — Figma frame "Background Grid" (1416:7939), 1440 × 900.
+    Every child is its own component, positioned with the frame's exact x/y,
+    rotation (transform-origin 0 0) and size so it can be animated on its own.
+    Figma Hand text is rendered from vector outlines exported from the file (assets/hand/*.svg).
+  -->
+  <header class="hero" id="home" data-component="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__fade hero__fade--left" aria-hidden="true"></div>
+    <div class="hero__fade hero__fade--right" aria-hidden="true"></div>
+    <div class="hero__fade hero__fade--top" aria-hidden="true"></div>
+    <div class="hero__fade hero__fade--bottom" aria-hidden="true"></div>
+
+    <!-- Nav (1416:7972) -->
+    <nav class="nav" aria-label="Primary" data-component="nav">
+      <a class="nav__link is-active" href="#home">Home</a>
+      <a class="nav__link" href="#work">My work</a>
+      <a class="nav__link" href="#about">About me</a>
+      <a class="nav__link" href="#resume">Resume</a>
+    </nav>
+
+    <!-- Polaroid "Open to work" (1416:8002) -->
+    <figure class="polaroid draggable" data-component="polaroid" tabindex="0" aria-label="Sketch of Jyoti waving — Open to work">
+      <!-- The sketch is split into clipped layers of the same sprite so parts can move on their own:
+           the arm (forearm + hand that rocks at the wrist), the motion marks and the two eyes.
+           On hover she waves 4 times and squints happily (main.js adds .is-waving). -->
+      <div class="polaroid__img" aria-hidden="true">
+        <span class="sprite sprite--body"></span>
+        <span class="sprite sprite--marks"></span>
+        <span class="sprite sprite--eye sprite--eye-l"></span>
+        <span class="sprite sprite--eye sprite--eye-r"></span>
+        <svg class="sprite sprite--happy-eyes" viewBox="0 0 1536 1024" preserveAspectRatio="none">
+          <path d="M451.5 810.5Q458 801 464.5 810.5" transform="rotate(-13 458 807)" />
+          <path d="M489 802Q495.5 792.5 502 802" transform="rotate(-13 495.5 799)" />
+        </svg>
+        <span class="sprite sprite--arm">
+          <span class="sprite-layer sprite-layer--forearm"></span>
+          <span class="sprite-layer sprite-layer--hand"></span>
+        </span>
+      </div>
+      <span class="polaroid__tape polaroid__tape--tl" aria-hidden="true"></span>
+      <span class="polaroid__tape polaroid__tape--br" aria-hidden="true"></span>
+      <figcaption class="polaroid__caption">
+        <span class="hand hand--open-to-work" role="img" aria-label="Open to work"></span>
+      </figcaption>
+    </figure>
+
+    <!-- Name (1416:7998) -->
+    <h1 class="hero__name">
+      <span class="hand hand--name" role="img" aria-label="Jyoti Kawar"></span>
+    </h1>
+
+    <!-- Tagline (1416:8000) -->
+    <p class="hero__tagline" data-component="tagline">
+      <span class="accent">Product designer</span> who <code class="hero__code">&lt;/codes/&gt;</code>,<br />
+      thinks in systems and designs for people
+    </p>
+
+    <!-- Sticky note "Currently working at" (1416:8021) -->
+    <div class="sticky draggable" data-component="sticky-note" tabindex="0">
+      <span class="hand hand--working sticky__label" role="img" aria-label="Currently working at"></span>
+      <p class="sticky__company">Helo.ai</p>
+      <span class="badge badge--sticky" aria-hidden="true"><img src="assets/suitcase.png" alt="" draggable="false" /></span>
+    </div>
+
+    <!-- Design toolkit folder — component set 1416:8044.
+         Default (1416:8043) = closed; hover → Variant2 (1416:8045) = open, Smart Animate 300ms ease-out. -->
+    <div class="toolkit draggable" data-component="toolkit" tabindex="0" role="button" aria-expanded="false" aria-label="My design toolkit">
+      <!-- Only in the open variant: tool icons -->
+      <img class="toolkit__tool toolkit__tool--figma"  src="assets/tools/tool-5.png" alt="Figma" draggable="false" />
+      <img class="toolkit__tool toolkit__tool--claude" src="assets/tools/tool-1.png" alt="Claude" draggable="false" />
+      <span class="toolkit__tool toolkit__tool--framer"><img src="assets/tools/tool-3.png" alt="Framer" draggable="false" /></span>
+      <img class="toolkit__tool toolkit__tool--notion" src="assets/tools/tool-2.png" alt="Notion" draggable="false" />
+      <img class="toolkit__tool toolkit__tool--jira"   src="assets/tools/tool-4.png" alt="Jira" draggable="false" />
+      <span class="toolkit__tool toolkit__tool--code"><img src="assets/tools/tool-6.png" alt="Code" draggable="false" /></span>
+
+      <div class="folder">
+        <span class="folder__tab" aria-hidden="true"></span>
+        <!-- Front panel: one element that tilts from the closed card (1416:8057) into the open flap (1416:8055) -->
+        <span class="folder__front" aria-hidden="true"></span>
+        <span class="folder__label">My design toolkit</span>
+      </div>
+    </div>
+
+    <!-- Developer card (1416:7978) -->
+    <div class="dev-card draggable" data-component="dev-card" tabindex="0">
+      <span class="badge badge--dev" aria-hidden="true"><img src="assets/code-slash.svg" alt="" draggable="false" /></span>
+      <div class="dev-card__head">
+        <img src="assets/dots.svg" alt="" class="dev-card__dots" draggable="false" />
+        <p>Developer turned Designer</p>
+      </div>
+      <div class="dev-card__code">
+        <p class="c-comment">// bridges tech &amp; visual craft</p>
+        <p><span class="c-kw">import</span> { <span class="c-id">design</span>, <span class="c-id">code</span> } <span class="c-kw">from</span> <span class="c-str">'craft'</span>;</p>
+        <p><span class="c-kw">const</span> <span class="c-var">experience</span> = <span class="c-id">design</span>(<span class="c-id">code</span>);</p>
+        <p class="c-ok"><span class="c-muted">⚡</span> Build success: <b>200 OK</b></p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ MY WORK ============ -->
+    <section class="work" id="work" data-component="work">
+      <h2 class="section-title">
+        <span class="hand hand--my-work" role="img" aria-label="My work"></span>
+      </h2>
+
+      <div class="work__list">
+        <article class="case" data-component="case-card">
+          <a class="case__link" href="campaign-creation.html" aria-label="Read the case study: Redesigning a campaign creation journey"></a>
+          <div class="case__text">
+            <h3>Redesigning a campaign creation journey</h3>
+            <p>Product designer crafting scalable, delightful experiences through systems thinking, strategy and visual craft.</p>
+            <ul class="tags"><li>B2B</li><li>Marketing</li><li>Saas</li></ul>
+          </div>
+          <!-- Thumbnail: the old 6-step setup (831:18147) collapsing into the new 3-step flow, ending on the
+               AI send-time visualiser (Figma 1970:200670; card 2055:255569) -->
+          <div class="case__shot thumb" data-component="campaign-thumb" role="img" aria-label="Campaign setup cut from 6 steps to 3: add audience, configure channels, and let AI pick the send time for each audience segment">
+            <div class="th-before" aria-hidden="true">
+              <span class="th-tag">BEFORE</span>
+              <p class="th-before__title">Stepwise configuration</p>
+              <ul class="th-steps">
+                <li><img src="assets/case/ch-sms.svg" alt="" />SMS configuration</li>
+                <li><img src="assets/case/ch-rcs.svg" alt="" />RCS configuration</li>
+                <li><img src="assets/case/ch-whatsapp.svg" alt="" />WhatsApp configuration</li>
+                <li>Audience</li>
+                <li>Settings <span class="th-ai-pill">AI POWERED</span></li>
+                <li>Preview</li>
+              </ul>
+            </div>
+            <div class="th-sticky" aria-hidden="true">
+              <span class="th-sticky__nums"><span class="th-sticky__old">6</span><span class="th-sticky__arrow">→</span><span class="th-sticky__new">3</span></span>
+              steps to launch
+            </div>
+            <svg class="th-arrow" viewBox="0 0 76 50" aria-hidden="true"><path d="M3 38c22 8 46 0 66-20M60 18l9-1-1 9" /></svg>
+
+            <!-- After: Create campaign panel from Figma (1970:200673 / 200676 / 200677 / 2055:255569), cropped like a peek -->
+            <div class="thumb__window" aria-hidden="true">
+              <img class="th-title" src="assets/thumb/step-title.svg" alt="" draggable="false" />
+              <div class="th-flow">
+                <img class="th-card" src="assets/thumb/step-aud.svg" alt="" draggable="false" />
+                <img class="th-card" src="assets/thumb/step-ch.svg" alt="" draggable="false" />
+                <div class="thumb__card">
+                  <img src="assets/thumb/ai-card.svg" alt="" draggable="false" />
+                  <span class="blob blob--1">1</span>
+                  <span class="blob blob--2">2</span>
+                  <span class="blob blob--3">3</span>
+                  <span class="blob blob--4">4</span>
+                  <div class="thumb__loader">
+                    <div class="thumb__rings"><div><span class="thumb__pct">100%</span><span class="thumb__hint">Optimising your segments…</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="case__icon case__icon--right case__icon--blue"><img src="assets/chat.png" alt="" /></span>
+        </article>
+
+        <article class="case case--reverse" data-component="case-card">
+          <div class="case__shot"><img src="assets/shot-journey.png" alt="Journey builder with conditions and A/B test" /></div>
+          <div class="case__text">
+            <h3>Redesigning a campaign creation journey</h3>
+            <p>Product designer crafting scalable, delightful experiences through systems thinking, strategy and visual craft.</p>
+            <ul class="tags"><li>B2B</li><li>Marketing</li><li>Saas</li></ul>
+          </div>
+          <span class="case__icon case__icon--left case__icon--purple"><img class="rot" src="assets/arrows-split.svg" alt="" /></span>
+        </article>
+
+        <article class="case" data-component="case-card">
+          <div class="case__text">
+            <h3>Designing an audience segment builder</h3>
+            <p>Turning complex audience rules into a query that reads like a sentence: events, conditions and AND/OR groups in one clear view.</p>
+            <ul class="tags"><li>B2B</li><li>Marketing</li><li>Saas</li></ul>
+          </div>
+          <!-- Banner: the segment query builder (Figma 1370:8650 source image) with its plain-English reading on a note -->
+          <div class="case__shot seg-thumb" role="img" aria-label="Audience segment builder: users who clicked 'Click now' 2+ times, on Windows, Chrome or Safari, in Mumbai, combined with a second group using AND or OR">
+            <div class="seg-thumb__window" aria-hidden="true"><img src="assets/seg/query-builder.png" alt="" draggable="false" /></div>
+            <div class="seg-thumb__note" aria-hidden="true">
+              <span class="seg-thumb__eyebrow">reads as</span>
+              Windows users in Mumbai, on Chrome or Safari, who clicked &ldquo;Click now&rdquo; 2+ times last week
+            </div>
+          </div>
+          <span class="case__icon case__icon--right case__icon--green"><img src="assets/filter.png" alt="" /></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about" data-component="about">
+      <h2 class="section-title">
+        <span class="hand hand--about-me" role="img" aria-label="Little about me"></span>
+      </h2>
+
+      <div class="about__wrap">
+        <div class="about__star" aria-hidden="true">
+          <img src="assets/star-body.svg" alt="" class="about__star-body" />
+          <img src="assets/star-face.svg" alt="" class="about__star-face" />
+        </div>
+
+        <div class="about__card">
+          <!-- Photo stack: click (or Enter/Space) shuffles the two polaroids — the back one is tossed
+               to the front and "develops" like instant film (main.js → data-component="photo-stack") -->
+          <div class="about__row" data-component="photo-stack">
+            <figure class="photo photo--back" data-component="photo">
+              <div class="photo__img"><img class="pic pic--2" src="assets/photo-2.png" alt="Jyoti standing" /></div>
+              <figcaption><span class="hand hand--photo-2" role="img" aria-label="2.png"></span></figcaption>
+            </figure>
+
+            <div class="about__copy">
+              <h3>Connecting computer science with human-centered design</h3>
+              <p>I started with engineering and development, which taught me to think in logic, systems, and constraints. Somewhere along the way, I realised I was more interested in why people struggle with products than just how those products are built.</p>
+              <p>I build <strong>0→1 products </strong>, <strong>AI-powered experiences </strong>and turning complex problems into simple and intuitive products.</p>
+            </div>
+
+            <figure class="photo photo--front" data-component="photo" tabindex="0" role="button" aria-label="Shuffle photos">
+              <div class="photo__img"><img class="pic pic--1" src="assets/photo-1.png" alt="Jyoti taking a mirror selfie" /></div>
+              <figcaption><span class="hand hand--photo-1" role="img" aria-label="1.png"></span></figcaption>
+            </figure>
+
+            <img class="about__tape" src="assets/tape.png" alt="" aria-hidden="true" />
+          </div>
+
+          <!-- Stickers: drag them around (same .draggable behaviour as the hero collage) -->
+          <ul class="stickers" aria-label="What I bring">
+            <li class="sticker sticker--violet draggable" tabindex="0">0→1 products</li>
+            <li class="sticker sticker--ink draggable" tabindex="0">AI experiences</li>
+            <li class="sticker sticker--lilac draggable" tabindex="0">systems thinker</li>
+          </ul>
+
+          <img class="about__doodle" src="assets/doodle-girl.png" alt="" aria-hidden="true" />
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/jyoti-kawar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="" /></a>
+            <a href="mailto:jyotikawar2@gmail.com" aria-label="Email jyotikawar2@gmail.com"><img src="assets/mail.svg" alt="" /></a>
+            <a href="https://www.instagram.com/_jyotikawar_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/instagram.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="resume" data-component="footer">
+    <div class="footer__copy">
+      <span class="pill"><img src="assets/dot-green.svg" alt="" />Open to full time opportunities &amp; collaboration</span>
+      <h2 class="footer__title">
+        <!-- Figma "Highlight 1" (1310:16776): Highlighter brush stroke, exported as vectors -->
+        <img class="footer__brush" src="assets/brush-highlight.svg" alt="" aria-hidden="true" draggable="false" />
+        Let's design thoughtful magic together
+      </h2>
+      <div class="cta-row">
+        <a class="btn btn--dark" href="mailto:jyotikawar2@gmail.com"><img src="assets/envelope-white.svg" alt="" />Connect with me</a>
+        <a class="btn btn--light" href="#"><img src="assets/download.svg" alt="" />Download Resume</a>
+      </div>
+    </div>
+    <p class="footer__big" aria-hidden="true">Think.Simplify.Design.</p>
+  </footer>
+
+</body>
+</html>

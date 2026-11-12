@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campaign creation case study</title>
+  <meta name="description" content="Case study: redesigning a campaign creation journey — from six configuration screens to three intent-driven decisions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=38" />
+  <link rel="stylesheet" href="case-study.css?v=26" />
+</head>
+<body class="cs">
+  <!--
+    Case study — Figma "Campaign creation" (831:17538), 1440 × 9797.
+    Each section below follows one frame of the design, top to bottom.
+  -->
+
+  <nav class="nav is-case" aria-label="Primary" data-component="nav">
+    <a class="nav__link" href="index.html#home">Home</a>
+    <a class="nav__link is-active" href="index.html#work" aria-current="page">My work</a>
+    <a class="nav__link" href="index.html#about">About me</a>
+    <a class="nav__link" href="index.html#resume">Resume</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="cs-hero" data-component="cs-hero">
+    <div class="cs-hero__grid" aria-hidden="true"></div>
+    <div class="cs-hero__inner">
+      <img class="cs-hero__shot" src="assets/case/hero-shot.png" width="800" height="446" alt="Redesigned campaign creation screen with audience, channels and AI scheduling steps" />
+      <div class="cs-hero__text">
+        <h1 class="cs-hero__title">Redesigning a campaign creation journey</h1>
+        <p class="cs-hero__sub">Helo.ai helps businesses send marketing messages over SMS, WhatsApp and RCS. I redesigned how they set up a campaign, turning 6 screens into 3 simple decisions.</p>
+        <dl class="cs-meta">
+          <div><dt>Role</dt><dd>Product designer</dd></div>
+          <div><dt>Skills</dt><dd>Product design, conceptualisation, User experience, Research</dd></div>
+          <div><dt>Timeline</dt><dd>3 Weeks</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ THE PROBLEM ============ -->
+    <section class="cs-problem" data-component="cs-problem">
+      <div class="cs-block">
+        <div class="cs-problem__tag">
+          <img class="cs-problem__bulb" src="assets/case/bulb.svg" alt="" aria-hidden="true" />
+          <img class="cs-problem__note" src="assets/case/hand/the-problem.svg" width="251" height="71" alt="The problem" />
+        </div>
+        <h2 class="cs-h2">Users were forced to configure campaigns instead of being guided to make decisions.</h2>
+        <p class="cs-p">Campaign creation felt complex, fragmented, and overwhelming - leading to high drop-offs, low multi-channel adoption, and low confidence before launch.</p>
+      </div>
+
+      <div class="chat" aria-label="What users told us">
+        <div class="chat__msg chat__msg--l1"><p class="bubble bubble--blue">Setting up campaigns takes too many steps - I just want to send a message.<img class="bubble__tail" src="assets/case/tail-l1.svg" alt="" /></p></div>
+        <div class="chat__msg chat__msg--l2"><p class="bubble bubble--blue">I’m not confident if this will work correctly after setup.<img class="bubble__tail" src="assets/case/tail-l2.svg" alt="" /></p></div>
+        <img class="chat__avatar chat__avatar--man" src="assets/case/avatar-man.png" alt="" />
+        <img class="chat__avatar chat__avatar--woman" src="assets/case/avatar-woman.png" alt="" />
+        <div class="chat__msg chat__msg--r1"><p class="bubble bubble--purple">This flow feels too long and confusing. I don’t know which channel to pick.<img class="bubble__tail" src="assets/case/tail-r1.svg" alt="" /></p></div>
+        <div class="chat__msg chat__msg--r2"><p class="bubble bubble--purple">Struggled with templates, channels, and setup choices.<img class="bubble__tail" src="assets/case/tail-r2.svg" alt="" /></p></div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE / AFTER FLOW ============ -->
+    <section class="cs-compare" data-component="cs-compare">
+      <h2 class="cs-compare__title">Why the old flow didn&#8217;t work</h2>
+      <button class="toggle" type="button" role="switch" aria-checked="false" aria-label="Show the redesigned flow">
+        <span class="toggle__label toggle__label--before">Before</span>
+        <span class="toggle__track"><span class="toggle__knob"></span></span>
+        <span class="toggle__label toggle__label--after">After</span>
+      </button>
+      <div class="cs-compare__stage">
+        <!-- Before: Figma "Group 2" (831:18147). The screenshot is the original 2940 × 1664 source, and the washi
+             tapes are vector exports. Their blend modes (plus-lighter / color-dodge) need the page behind them,
+             so a white silhouette of each tape carries the shadow and the textured tape blends on top. -->
+        <div class="cs-compare__img cs-compare__img--before is-active" role="img" aria-label="Old flow: six sequential screens for name, three channel configurations, audience and schedule">
+          <img class="before__tape before__tape--tr before__tape--shape" src="assets/case/before/tape-tr.svg" alt="" />
+          <img class="before__tape before__tape--bl before__tape--shape" src="assets/case/before/tape-bl.svg" alt="" />
+          <div class="before__screen"><img src="assets/case/before/screen.png" width="2940" height="1664" alt="" /></div>
+          <img class="before__tape before__tape--tr" src="assets/case/before/tape-tr.svg" alt="" />
+          <img class="before__tape before__tape--bl" src="assets/case/before/tape-bl.svg" alt="" />
+        </div>
+        <!-- After: the Figma frame "Home" (831:18160) exported as vector SVG, so text and icons stay sharp at any zoom;
+             washi tapes are 3x renders placed at their Figma render bounds -->
+        <div class="cs-compare__img cs-compare__img--after" role="img" aria-label="New flow: one page with audience, channels and schedule sections">
+          <img class="after__screen" src="assets/case/after/screen.svg" width="885" height="498" alt="" />
+          <img class="after__tape after__tape--tr" src="assets/case/after/tape-tr.svg" alt="" />
+          <img class="after__tape after__tape--bl" src="assets/case/after/tape-bl.svg" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GOALS ============ -->
+    <section class="cs-goals" data-component="cs-goals">
+      <div class="cs-block">
+        <p class="cs-label">Goals</p>
+        <h2 class="cs-h2">The outcomes I designed for</h2>
+        <ol class="goals">
+          <li><span class="goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-1.svg" alt="" /></span>
+            <p>Reduce drop-offs by <b>simplifying</b> the lengthy campaign journey and <b>perceived effort</b>.</p></li>
+          <li><span class="goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-2.svg" alt="" /></span>
+            <p>Encourage <b>multi-channel adoption</b> by <b>showing the benefit</b> of using more channels.</p></li>
+          <li><span class="goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-3.svg" alt="" /></span>
+            <p>Introduce <b>AI</b> at the right moments to assist <b>decision-making</b> and improve campaign performance.</p></li>
+          <li><span class="goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-4.svg" alt="" /></span>
+            <p>Offer <b>campaign previews</b> and simplified insights so users feel <b>assured before launch</b>.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ RETHINKING THE EXPERIENCE ============ -->
+    <section class="cs-rethink" data-component="cs-rethink">
+      <p class="cs-label cs-label--center">Rethinking the experience</p>
+      <h2 class="cs-h2 cs-h2--center">Collapsing 6 complex screens into 3 intent-driven decisions.</h2>
+
+      <div class="rethink">
+        <span class="pill pill--before">Before</span>
+        <ol class="flow flow--before">
+          <li class="step"><span class="step__icon step__icon--lg"><img src="assets/case/emoji-megaphone.png" alt="" /></span><span class="step__label step__label--wide">Campaign name +<br />Channel selection</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-before.svg" alt="" /></li>
+          <li class="step"><span class="step__icon"><img src="assets/case/chat-icon-1.png" alt="" /></span><span class="step__label">Channel 1<br />configuration</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-before.svg" alt="" /></li>
+          <li class="step"><span class="step__icon"><img src="assets/case/chat-icon.png" alt="" /></span><span class="step__label">Channel 2<br />configuration</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-before.svg" alt="" /></li>
+          <li class="step"><span class="step__icon"><img src="assets/case/chat-icon.png" alt="" /></span><span class="step__label">Channel 3<br />configuration</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-before.svg" alt="" /></li>
+          <li class="step"><span class="step__icon step__icon--emoji">👥</span><span class="step__label">Audience<br />upload</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-before.svg" alt="" /></li>
+          <li class="step"><span class="step__icon step__icon--emoji">⏰</span><span class="step__label">Manual<br />scheduling</span></li>
+        </ol>
+
+        <p class="rethink__caption">Replaced 6 sequential screens with 3 questions marketers already ask themselves - Who, What, and When. Nothing was removed; it&#8217;s simply ordered the way marketers think.</p>
+        <span class="rethink__caret" aria-hidden="true"><img src="assets/case/caret-down.svg" alt="" /></span>
+
+        <span class="pill pill--after">After</span>
+        <ol class="flow flow--after">
+          <li class="step"><span class="step__icon step__icon--emoji">👥</span><span class="step__q">Who</span><span class="step__label step__label--lg">Add audience</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-after-1.svg" alt="" /></li>
+          <li class="step">
+            <span class="step__icon"><img src="assets/case/chat-icon.png" alt="" />
+              <span class="step__channels" aria-hidden="true">
+                <img class="ch ch--sms" src="assets/case/ch-sms.svg" alt="" />
+                <img class="ch ch--rcs" src="assets/case/ch-rcs.svg" alt="" />
+                <img class="ch ch--wa" src="assets/case/ch-whatsapp.svg" alt="" />
+              </span>
+            </span>
+            <span class="step__q">What</span><span class="step__label step__label--lg">Configure channels</span></li>
+          <li class="flow__arrow" aria-hidden="true"><img src="assets/case/arrow-after-2.svg" alt="" /></li>
+          <li class="step"><span class="step__icon step__icon--emoji">⏰<img class="step__sparkle" src="assets/case/sparkle.svg" alt="" /></span><span class="step__q">When</span><span class="step__label step__label--lg">Schedule campaign</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ STARTING WITH INTENT ============ -->
+    <section class="cs-intent" data-component="cs-intent">
+      <div class="cs-block">
+        <p class="cs-label cs-label--lg">Starting with intent</p>
+        <h2 class="cs-h2">Turning the entry point into an adoption moment</h2>
+        <p class="cs-p">The campaign entry point became more than a way to start a campaign. We used it to nudge users towards multi-channel campaigns and surface AI-powered scheduling early, helping them make better decisions before getting into configuration.</p>
+      </div>
+      <div class="intent">
+        <img class="intent__shot" src="assets/case/intent-mockup.svg" width="710" height="404" alt="Select a campaign type: multi-channel, single-channel or flow-based, followed by AI or manual scheduling" />
+        <div class="note note--intent-left">
+          <p>Promoted multi-channel outreach early with explicit ROI metrics to <b>drive adoption over</b> single channel</p>
+          <span class="rot-line rot-line--intent-left" aria-hidden="true"><span><img src="assets/case/line-intent-left.svg" alt="" /></span></span>
+        </div>
+        <div class="note note--intent-right">
+          <img class="note__line" src="assets/case/line-intent-right.svg" alt="" aria-hidden="true" />
+          <p>Prompted AI vs. Manual scheduling immediately to tailor the <b>context-aware flow</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEEP DIVE / ITERATIONS ============ -->
+    <section class="cs-deep" data-component="cs-iterations">
+      <div class="cs-block">
+        <h2 class="cs-h2">How I designed it, and why</h2>
+        <p class="cs-p">One decision is open at a time, so users focus on a single step instead of seeing everything at once.</p>
+      </div>
+      <p class="cs-caption">A glimpse into the iterations that shaped the final approach.</p>
+
+      <div class="tabset tabset--iter" data-tabset>
+        <div class="seg" role="tablist" aria-label="Iterations">
+          <button class="seg__item is-active" role="tab" aria-selected="true" aria-controls="iter-final" id="tab-iter-final">Final approach</button>
+          <button class="seg__item" role="tab" aria-selected="false" aria-controls="iter-2" id="tab-iter-2" tabindex="-1">Iteration 2</button>
+          <button class="seg__item" role="tab" aria-selected="false" aria-controls="iter-1" id="tab-iter-1" tabindex="-1">Iteration 1</button>
+          <button class="seg__item" role="tab" aria-selected="false" aria-controls="iter-before" id="tab-iter-before" tabindex="-1">Before</button>
+        </div>
+        <div class="tabset__stage">
+          <div class="tabset__panel is-active" role="tabpanel" id="iter-final" aria-labelledby="tab-iter-final">
+            <img class="iter iter--final" src="assets/case/iter/final.svg" width="1105" height="369" alt="Final approach: accordion sections for audience, channels and scheduling" />
+          </div>
+          <div class="tabset__panel" role="tabpanel" id="iter-2" aria-labelledby="tab-iter-2">
+            <img class="iter iter--2" src="assets/case/iter/iter-2.svg" width="1089" height="731" alt="Iteration 2" />
+          </div>
+          <div class="tabset__panel" role="tabpanel" id="iter-1" aria-labelledby="tab-iter-1">
+            <img class="iter iter--1" src="assets/case/iter/iter-1.svg" width="1089" height="870" alt="Iteration 1" />
+          </div>
+          <div class="tabset__panel" role="tabpanel" id="iter-before" aria-labelledby="tab-iter-before">
+            <img class="iter iter--before" src="assets/case/iter/before.svg" width="830" height="518" alt="The original multi-step setup" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHO / WHAT / WHEN ============ -->
+    <section class="cs-www" data-component="cs-who-what-when">
+      <div class="www">
+        <div class="www__row www__row--who">
+          <div class="www__text">
+            <span class="hand hand--who" role="img" aria-label="Who"></span>
+            <h3 class="www__label">A. Add Audience</h3>
+            <p class="cs-p cs-p--lg">Upload user segments, select targeted lists, or run quick test campaigns on sample devices - establishing your audience foundation before setting up content.</p>
+          </div>
+          <figure class="video-frame"><img src="assets/case/who-still.png" width="600" height="345" alt="Adding an audience: upload file, select segment or test devices" /></figure>
+        </div>
+
+        <div class="www__row www__row--what">
+          <figure class="video-frame"><img src="assets/case/what-still.png" width="600" height="345" alt="Configuring channels with templates and failover order" /></figure>
+          <div class="www__text">
+            <span class="hand hand--what" role="img" aria-label="What"></span>
+            <h3 class="www__label">B. Configure channels</h3>
+            <p class="cs-p cs-p--lg">Pick the message for each channel and its backup order in one view (if SMS fails, it tries WhatsApp, then RCS) - no more jumping between separate channel screens.</p>
+          </div>
+        </div>
+
+        <div class="www__row www__row--when">
+          <div class="www__text">
+            <span class="hand hand--when" role="img" aria-label="When"></span>
+            <h3 class="www__label www__label--nowrap">C. Schedule - AI optimised or manual</h3>
+            <p class="cs-p cs-p--lg">Set a manual send time or let AI study when each group of users is most active and send at those times.</p>
+          </div>
+          <figure class="video-frame video-frame--when"><img src="assets/case/when-frame.png" width="1800" height="1035" alt="Scheduling: choose a time slot and let AI optimise send time" /></figure>
+          <span class="rot-line rot-line--when" aria-hidden="true"><span><img src="assets/case/line-when.svg" alt="" /></span></span>
+          <a class="bridge-pill" href="#ai-scheduling" data-ai-link>AI scheduling <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <!-- AI implementation -->
+        <div class="ai-panel" id="ai-scheduling" data-component="cs-ai" aria-label="AI scheduling, an extension of step C. Schedule">
+          <div class="ai-panel__head">
+            <span class="hand hand--ai" role="img" aria-label="AI implementation"></span>
+            <img class="ai-panel__icon" src="assets/case/ai-icon.svg" alt="" aria-hidden="true" />
+            <h3 class="www__label">Schedule campaign with AI</h3>
+            <p class="ai-panel__title">One fixed send time was costing money on messages nobody was awake to read.</p>
+          </div>
+          <!-- Three steps of AI scheduling. Screens are the Figma "AI optimisation card" variants
+               (1950:105129 → Selected 2008:236872, loading 1950:105285, graph 1950:178481). -->
+          <div class="ai-flow" data-component="ai-flow">
+            <div class="ai-flow__side">
+            <div class="ai-flow__steps" role="tablist" aria-label="AI scheduling, step by step">
+              <button class="ai-flow__step is-active" type="button" role="tab" id="ai-tab-1" aria-controls="ai-screen-1" aria-selected="true">
+                <span class="ai-flow__title">Pick a window</span>
+                <span class="ai-flow__text">Today, the next 24 hours or the next 7 days.</span>
+              </button>
+              <button class="ai-flow__step" type="button" role="tab" id="ai-tab-2" aria-controls="ai-screen-2" aria-selected="false" tabindex="-1">
+                <span class="ai-flow__title">AI studies activity</span>
+                <span class="ai-flow__text">It learns when each group of your audience is usually active.</span>
+              </button>
+              <button class="ai-flow__step" type="button" role="tab" id="ai-tab-3" aria-controls="ai-screen-3" aria-selected="false" tabindex="-1">
+                <span class="ai-flow__title">Each group gets its own time</span>
+                <span class="ai-flow__text">Four send times, sized by audience, instead of one blast to everyone.</span>
+              </button>
+            </div>
+            <div class="ai-flow__view" role="group" aria-label="Show the segments as">
+              <button type="button" class="is-on" data-view="ai-screen-3" aria-pressed="true">Chart</button>
+              <button type="button" data-view="ai-screen-3t" aria-pressed="false">Table</button>
+            </div>
+            </div>
+            <div class="ai-flow__stage">
+              <div class="ai-flow__screen is-active" id="ai-screen-1" role="tabpanel" aria-labelledby="ai-tab-1">
+                <img src="assets/case/ai/step-1.png" width="758" height="270" alt="Optimise time using AI: Next 7 days selected as the time slot, Generate button ready" />
+                <!-- Time-slot icons are emoji fills in Figma, which its SVG export drops; drawn in the card's own coordinates -->
+                <svg class="ai-emoji" viewBox="0 0 758 270" aria-hidden="true" focusable="false"><text x="82" y="156" font-size="21">⏰</text><text x="248" y="156" font-size="21">🗓️</text><text x="414" y="156" font-size="21">📆</text></svg>
+              </div>
+              <img class="ai-flow__screen" id="ai-screen-2" role="tabpanel" aria-labelledby="ai-tab-2" src="assets/case/ai/step-2.png" width="758" height="454" alt="AI optimising your segments, 17% complete, with a Pause button" />
+              <img class="ai-flow__screen" id="ai-screen-3" role="tabpanel" aria-labelledby="ai-tab-3" src="assets/case/ai/step-3.png" width="758" height="454" alt="Bubble chart of four AI-generated segments, each placed at its own send time across the day" />
+              <img class="ai-flow__screen" id="ai-screen-3t" role="tabpanel" aria-labelledby="ai-tab-3" src="assets/case/ai/step-3-table.png" width="758" height="352" alt="The same four segments as a table: audience share and scheduled send time for each" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PREVIEW MODAL ============ -->
+    <section class="cs-modal" data-component="cs-modal">
+      <div class="cs-block">
+        <p class="cs-label">Live preview</p>
+        <h2 class="cs-h2">From filling forms blind to seeing exactly what customers get</h2>
+        <p class="cs-p">A live side-by-side preview gives marketers instant visual feedback - showing exactly how each message, including personalised fields like {name}, will look on every channel before saving.</p>
+      </div>
+
+      <div class="tabset tabset--channel" data-tabset>
+        <div class="seg" role="tablist" aria-label="Channel preview">
+          <button class="seg__item is-active" role="tab" aria-selected="true" aria-controls="ch-sms" id="tab-ch-sms">SMS</button>
+          <button class="seg__item" role="tab" aria-selected="false" aria-controls="ch-wa" id="tab-ch-wa" tabindex="-1">WhatsApp</button>
+          <button class="seg__item" role="tab" aria-selected="false" aria-controls="ch-rcs" id="tab-ch-rcs" tabindex="-1">RCS</button>
+        </div>
+        <div class="tabset__stage">
+          <div class="tabset__panel is-active" role="tabpanel" id="ch-sms" aria-labelledby="tab-ch-sms"><img class="channel" src="assets/case/channel/sms.svg?v=2" width="1118" height="425" alt="SMS template configuration with live phone preview" /></div>
+          <div class="tabset__panel" role="tabpanel" id="ch-wa" aria-labelledby="tab-ch-wa"><img class="channel" src="assets/case/channel/whatsapp.svg?v=3" width="1118" height="425" alt="WhatsApp template configuration with live phone preview" /></div>
+          <div class="tabset__panel" role="tabpanel" id="ch-rcs" aria-labelledby="tab-ch-rcs"><img class="channel" src="assets/case/channel/rcs.svg?v=4" width="1118" height="425" alt="RCS template configuration with live phone preview" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL PREVIEW ============ -->
+    <section class="cs-final" data-component="cs-final">
+      <div class="cs-block cs-block--center">
+        <p class="cs-label">Final preview</p>
+        <h2 class="cs-h2 cs-h2--nowrap">A final preview for peace of mind before launch 🎉</h2>
+        <p class="cs-p cs-p--sm">Before launching, users get a unified preview of their configured campaign across all the channels with key details and message previews so they can quickly validate and make changes.</p>
+      </div>
+      <div class="final">
+        <img class="final__shot" src="assets/case/final-preview.svg?v=4" width="731" height="417" alt="Campaign preview with files, audience, channels, AI-generated segments and a preview of each channel's message" />
+        <!-- Same sketch as the homepage polaroid; she waves when hovered -->
+        <div class="final__doodle" tabindex="0" aria-label="Sketch of Jyoti waving">
+          <div class="polaroid__img" aria-hidden="true">
+            <span class="sprite sprite--body"></span>
+            <span class="sprite sprite--marks"></span>
+            <span class="sprite sprite--eye sprite--eye-l"></span>
+            <span class="sprite sprite--eye sprite--eye-r"></span>
+            <svg class="sprite sprite--happy-eyes" viewBox="0 0 1536 1024" preserveAspectRatio="none">
+              <path d="M451.5 810.5Q458 801 464.5 810.5" transform="rotate(-13 458 807)" />
+              <path d="M489 802Q495.5 792.5 502 802" transform="rotate(-13 495.5 799)" />
+            </svg>
+            <span class="sprite sprite--arm">
+              <span class="sprite-layer sprite-layer--forearm"></span>
+              <span class="sprite-layer sprite-layer--hand"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI IN MY PROCESS ============ -->
+    <section class="cs-process" data-component="cs-process">
+      <p class="cs-label">My process</p>
+      <h2 class="cs-h2">How I used AI to move faster</h2>
+      <p class="cs-p">AI took on the groundwork, so more of my time went into the decisions. It gave me first drafts; the calls on what to keep, cut and refine were mine.</p>
+      <ul class="tools" aria-label="AI tools I used">
+        <li>Claude</li><li>ChatGPT</li><li>Figma AI</li>
+      </ul>
+      <ol class="process">
+        <li class="process__card">
+          <h3 class="process__title">Research synthesis</h3>
+          <p class="process__row"><span class="process__who process__who--ai">AI</span>Grouped user feedback and notes into themes.</p>
+          <p class="process__row"><span class="process__who">Me</span>Picked the pain points that shaped the brief: too many steps and low confidence before launch.</p>
+        </li>
+        <li class="process__card">
+          <h3 class="process__title">Exploring variations</h3>
+          <p class="process__row"><span class="process__who process__who--ai">AI</span>Generated quick layout and flow alternatives for the 3-step structure.</p>
+          <p class="process__row"><span class="process__who">Me</span>Chose the one-decision-at-a-time direction and refined it over two iterations.</p>
+        </li>
+        <li class="process__card">
+          <h3 class="process__title">Edge cases &amp; prototyping</h3>
+          <p class="process__row"><span class="process__who process__who--ai">AI</span>Listed edge cases, like a channel without an approved template, and helped build interactive prototypes.</p>
+          <p class="process__row"><span class="process__who">Me</span>Designed the states that mattered: warnings, channel fallbacks and the final preview.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ IMPACT ============ -->
+    <section class="cs-impact" data-component="cs-impact">
+      <p class="cs-label">Impact</p>
+      <h2 class="cs-h2">What changed</h2>
+      <ul class="metrics">
+        <li class="metric"><p class="metric__value"><span class="metric__arrow">↑</span> 50%</p><p class="metric__label">Campaign completion rate</p></li>
+        <li class="metric"><p class="metric__value"><span class="metric__arrow">↑</span> 30%</p><p class="metric__label">Multi-channel campaign adoption</p></li>
+        <li class="metric"><p class="metric__value"><span class="metric__arrow">↓</span> XX%</p><p class="metric__label">Drop-off during campaign creation</p></li>
+        <li class="metric"><p class="metric__value"><span class="metric__arrow">↓</span> 40%</p><p class="metric__label">Time to set up a campaign</p></li>
+      </ul>
+      <p class="cs-impact__end">The redesign shifted campaign creation from a configuration-heavy experience to a more guided, decision-focused journey—while making multi-channel and AI-assisted workflows easier to adopt.</p>
+    </section>
+
+    <!-- ============ UP NEXT ============ -->
+    <section class="cs-next" data-component="cs-next">
+      <p class="cs-label">Up next</p>
+      <article class="case" data-component="case-card">
+        <div class="case__text">
+          <h3>Designing an audience segment builder</h3>
+          <p>Turning complex audience rules into a query that reads like a sentence: events, conditions and AND/OR groups in one clear view.</p>
+          <ul class="tags"><li>B2B</li><li>Marketing</li><li>Saas</li></ul>
+          <span class="cs-next__soon">Case study coming soon</span>
+        </div>
+        <!-- Banner: the segment query builder (Figma 1370:8650 source image) with its plain-English reading on a note -->
+        <div class="case__shot seg-thumb" role="img" aria-label="Audience segment builder: users who clicked 'Click now' 2+ times, on Windows, Chrome or Safari, in Mumbai, combined with a second group using AND or OR">
+          <div class="seg-thumb__window" aria-hidden="true"><img src="assets/seg/query-builder.png" alt="" draggable="false" /></div>
+          <div class="seg-thumb__note" aria-hidden="true">
+            <span class="seg-thumb__eyebrow">reads as</span>
+            Windows users in Mumbai, on Chrome or Safari, who clicked &ldquo;Click now&rdquo; 2+ times last week
+          </div>
+        </div>
+        <span class="case__icon case__icon--right case__icon--green"><img src="assets/filter.png" alt="" /></span>
+      </article>
+      <a class="cs-back" href="index.html#work">← Back to my work</a>
+    </section>
+  </main>
+
+  <script src="case-study.js?v=6"></script>
+</body>
+</html>

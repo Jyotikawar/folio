@@ -1,0 +1,43 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1555" height="490" viewBox="0 0 1555 490" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Background Grid" clip-path="url(#clip0_0_25)">
+<line id="grid-v" x1="200.375" y1="60" x2="200.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_2" x1="260.375" y1="60" x2="260.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_3" x1="320.375" y1="60" x2="320.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_4" x1="380.375" y1="60" x2="380.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_5" x1="440.375" y1="60" x2="440.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_6" x1="500.375" y1="60" x2="500.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_7" x1="560.375" y1="60" x2="560.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_8" x1="620.375" y1="60" x2="620.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_9" x1="680.375" y1="60" x2="680.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_10" x1="740.375" y1="60" x2="740.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_11" x1="800.375" y1="60" x2="800.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_12" x1="860.375" y1="60" x2="860.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_13" x1="920.375" y1="60" x2="920.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_14" x1="980.375" y1="60" x2="980.375" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_15" x1="1040.38" y1="60" x2="1040.38" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_16" x1="1100.38" y1="60" x2="1100.38" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_17" x1="1160.38" y1="60" x2="1160.38" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-v_18" x1="1220.38" y1="60" x2="1220.38" y2="700" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h" x1="200" y1="59.625" x2="1240" y2="59.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_2" x1="200" y1="119.625" x2="1240" y2="119.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_3" x1="200" y1="179.625" x2="1240" y2="179.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_4" x1="200" y1="239.625" x2="1240" y2="239.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_5" x1="200" y1="299.625" x2="1240" y2="299.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_6" x1="200" y1="359.625" x2="1240" y2="359.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_7" x1="200" y1="419.625" x2="1240" y2="419.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_8" x1="200" y1="479.625" x2="1240" y2="479.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_9" x1="200" y1="539.625" x2="1240" y2="539.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_10" x1="200" y1="599.625" x2="1240" y2="599.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<line id="grid-h_11" x1="200" y1="659.625" x2="1240" y2="659.625" stroke-width="0.75" stroke="#B8BDC2" stroke-opacity="0.2"/>
+<rect id="fade-bottom" y="600" width="1440" height="300" fill="url(#paint0_linear_0_25)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_25" x1="720" y1="600" x2="720" y2="900" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<clipPath id="clip0_0_25">
+<rect width="1555" height="490" fill="white"/>
+</clipPath>
+</defs>
+</svg>
