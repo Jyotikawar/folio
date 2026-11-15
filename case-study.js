@@ -20,7 +20,7 @@ window.addEventListener('scroll', onScroll, { passive: true });
 const toggle = document.querySelector('.toggle');
 const before = document.querySelector('.cs-compare__img--before');
 const after = document.querySelector('.cs-compare__img--after');
-toggle.addEventListener('click', () => {
+if (toggle) toggle.addEventListener('click', () => {
   const on = toggle.getAttribute('aria-checked') !== 'true';
   toggle.setAttribute('aria-checked', String(on));
   toggle.setAttribute('aria-label', on ? 'Show the old flow' : 'Show the redesigned flow');
@@ -157,4 +157,56 @@ if (flow) {
     inView = entries[0].isIntersecting;
     if (inView) play(); else stop();
   }, { threshold: 0.5 }).observe(flow);
+}
+
+/* ---------- Segmentation: sticky chapter list ----------
+   Appears once the reader passes the hero and highlights the chapter in view. */
+const toc = document.querySelector('[data-component="sg-toc"]');
+if (toc) {
+  const links = [...toc.querySelectorAll('a')];
+  const chapters = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const hero = document.querySelector('[data-component="cs-hero"]');
+  const roomy = window.matchMedia('(min-width: 1300px)');
+  const setActive = (id) => links.forEach((a) => {
+    const on = a.getAttribute('href') === `#${id}`;
+    a.classList.toggle('is-active', on);
+    if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  chapters.forEach((c) => io.observe(c));
+  const showToc = () => toc.classList.toggle('is-visible', roomy.matches && hero.getBoundingClientRect().bottom < 0);
+  showToc();
+  window.addEventListener('scroll', showToc, { passive: true });
+  roomy.addEventListener('change', showToc);
+}
+
+/* ---------- Segmentation: rewind line ----------
+   As the track crosses the middle of the screen the line fills, and the word rolls Screens → SQL → Request.
+   Reduced motion shows the finished state. */
+const rewind = document.querySelector('[data-component="sg-rewind"]');
+if (rewind) {
+  const track = rewind.querySelector('.sg-rewind__track');
+  const STEPS = 3;
+  const set = (p) => {
+    rewind.style.setProperty('--rw', p.toFixed(3));
+    rewind.style.setProperty('--rw-i', Math.min(STEPS - 1, Math.floor(p * STEPS)));
+  };
+  if (reduceMotion) set(1);
+  else {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = track.getBoundingClientRect();
+      const start = innerHeight * 0.75; // fill begins when the track top reaches 75% of the screen…
+      const end = innerHeight * 0.35;   // …and completes when its bottom reaches 35%
+      const p = (start - r.top) / (r.height + start - end);
+      set(Math.max(0, Math.min(1, p)));
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
 }

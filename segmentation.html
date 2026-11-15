@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audience segmentation case study</title>
+  <meta name="description" content="Case study: designing a visual query builder that lets marketers build precise audience segments from events and attributes, without writing SQL." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;600&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=38" />
+  <link rel="stylesheet" href="case-study.css?v=150" />
+</head>
+<body class="cs">
+  <!--
+    Case study — Figma "Conversations" file, frame 983:45318 (1440 × 10026).
+    Headings and body copy are HTML; each section's visual is a 2× render of its Figma frame.
+  -->
+
+  <nav class="nav is-case" aria-label="Primary" data-component="nav">
+    <a class="nav__link" href="index.html#home">Home</a>
+    <a class="nav__link is-active" href="index.html#work" aria-current="page">My work</a>
+    <a class="nav__link" href="index.html#about">About me</a>
+    <a class="nav__link" href="index.html#resume">Resume</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="cs-hero" data-component="cs-hero">
+    <div class="cs-hero__grid" aria-hidden="true"></div>
+    <div class="cs-hero__inner">
+      <img class="cs-hero__shot" src="assets/seg/hero.png" width="800" height="446" alt="Segment builder: two groups of rules joined by AND, with an event, its property filters and a project tag" />
+      <div class="cs-hero__text">
+        <h1 class="cs-hero__title">How I made audience segmentation easier for non-technical users</h1>
+        <p class="cs-hero__sub">Designing a visual query-building experience that helps marketers define precise audience segments using customer attributes and behavioural events, without writing SQL.</p>
+        <p class="sg-read">6 min read</p>
+        <dl class="cs-meta">
+          <div><dt>Role</dt><dd>Product designer, end-to-end</dd></div>
+          <div><dt>Skills</dt><dd>Product design, conceptualisation, User experience, Research</dd></div>
+          <div><dt>Status</dt><dd>Dev complete, live internally</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ CHAPTER NAV (sticky, highlights the chapter in view) ============ -->
+    <nav class="sg-toc" aria-label="Case study chapters" data-component="sg-toc">
+      <ol>
+        <li><a href="#problem"><span>01</span><em>The problem</em></a></li>
+        <li><a href="#approach"><span>02</span><em>How I approached it</em></a></li>
+        <li><a href="#explorations"><span>03</span><em>Explorations</em></a></li>
+        <li><a href="#design"><span>04</span><em>The final design</em></a></li>
+        <li><a href="#reflection"><span>05</span><em>Reflection</em></a></li>
+      </ol>
+    </nav>
+
+    <!-- ============ VALUE DELIVERED (stats before the story) ============ -->
+    <section class="sg-stats" data-component="sg-stats" aria-labelledby="sg-stats-title">
+      <h2 class="sg-stats__title" id="sg-stats-title">Value delivered</h2>
+      <ul class="sg-stats__list">
+        <li class="sg-stat">
+          <p class="sg-stat__value">XX% <span class="sg-stat__arrow sg-stat__arrow--down" aria-label="decrease">&#8595;</span></p>
+          <p class="sg-stat__label">Time to build a segment</p>
+        </li>
+        <li class="sg-stat">
+          <p class="sg-stat__value">XX% <span class="sg-stat__arrow sg-stat__arrow--down" aria-label="decrease">&#8595;</span></p>
+          <p class="sg-stat__label">Audience requests to the data team</p>
+        </li>
+        <li class="sg-stat">
+          <p class="sg-stat__value">Xx <span class="sg-stat__arrow sg-stat__arrow--up" aria-label="increase">&#8593;</span></p>
+          <p class="sg-stat__label">Segments built by marketers themselves</p>
+        </li>
+      </ul>
+      <p class="sg-todo">Replace each XX with your real numbers and adjust the labels to what was measured. If there are no measured results yet, use what the team plans to track, or remove this block.</p>
+    </section>
+
+    <!-- ============ 01 THE PROBLEM ============ -->
+    <section class="sg-sec" id="problem" data-component="sg-journey">
+      <div class="sg-head">
+        <!-- Problem statement: same pattern as the campaign case study (bulb + hand-drawn tag, statement, conversation) -->
+        <div class="cs-problem__tag sg-problem__tag">
+          <img class="cs-problem__bulb" src="assets/case/bulb.svg" alt="" aria-hidden="true" />
+          <img class="cs-problem__note" src="assets/case/hand/the-problem.svg" width="251" height="71" alt="The problem" />
+        </div>
+        <h2 class="cs-h2">Marketers knew exactly who they wanted to reach, but couldn&#8217;t build the audience without the data team.</h2>
+        <p class="cs-p">Every segment had to be written as SQL by someone else. A small change meant a new request, so campaigns waited and targeting ideas went untested.</p>
+
+        <!-- Intent vs. translation: the same three conditions, as the marketer says them and as the SQL they had to wait for -->
+        <div class="sg-gap" role="group" aria-label="What the marketer asked compared with the SQL the data team had to write">
+          <div class="sg-gap__ask">
+            <p class="sg-gap__k">What the marketer asked</p>
+            <p class="sg-gap__quote">&#8220;Users who were <span class="sg-c sg-c--1">active recently</span>, <span class="sg-c sg-c--2">haven&#8217;t bought in 30 days</span> and <span class="sg-c sg-c--3">like healthy food</span>.&#8221;</p>
+            <p class="sg-gap__note">One sentence. Three conditions.</p>
+          </div>
+          <div class="sg-gap__hand" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"/></svg>
+            <span>Handed to the data team</span>
+          </div>
+          <div class="sg-gap__sql">
+            <p class="sg-gap__k">What it took</p>
+<pre class="sg-gap__code"><code><b>SELECT</b> u.user_id <b>FROM</b> users u
+<b>JOIN</b> events e <b>ON</b> e.user_id = u.user_id
+<b>WHERE</b> <span class="sg-c sg-c--1">e.event_time &gt;= NOW() - INTERVAL '7 days'</span>
+  <b>AND</b> <span class="sg-c sg-c--2">u.user_id <b>NOT IN</b> (
+    <b>SELECT</b> user_id <b>FROM</b> events
+    <b>WHERE</b> event_name = 'purchase'
+      <b>AND</b> event_time &gt;= NOW() - INTERVAL '30 days')</span>
+  <b>AND</b> <span class="sg-c sg-c--3">u.food_preference = 'healthy'</span>
+<b>GROUP BY</b> u.user_id;</code></pre>
+            <p class="sg-gap__note">Illustrative query. Written by someone else, every time.</p>
+          </div>
+        </div>
+
+        <!-- Every change sends the request round the same loop -->
+        <div class="sg-handoff" aria-label="Every change repeats the handoff: ask, wait in the queue, SQL is written, list is shared, then a change starts it again">
+          <p class="sg-handoff__k">And every change starts the handoff again</p>
+          <ol class="sg-handoff__steps">
+            <li>Ask</li>
+            <li class="is-wait">Wait in the queue</li>
+            <li>SQL is written</li>
+            <li>List is shared</li>
+          </ol>
+          <p class="sg-handoff__back"><span aria-hidden="true">&#8634;</span> Change one condition, start over</p>
+        </div>
+
+        <div class="sg-pbox sg-pbox--tabs">
+          <div class="tabset sg-pb" data-tabset>
+            <div class="seg" role="tablist" aria-label="The problem">
+              <button class="seg__item is-active" role="tab" aria-selected="true" aria-controls="pb-user" id="tab-pb-user">User problem</button>
+              <button class="seg__item" role="tab" aria-selected="false" aria-controls="pb-biz" id="tab-pb-biz" tabindex="-1">Business problem</button>
+            </div>
+            <div class="tabset__stage sg-pb__stage">
+              <div class="tabset__panel is-active" role="tabpanel" id="pb-user" aria-labelledby="tab-pb-user">
+                <article class="sg-pb__card">
+                  <span class="sg-pb__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg></span>
+                  <div>
+                    <p class="sg-pb__lead">Marketers knew who to target, but couldn&#8217;t build the audience themselves.</p>
+                    <p class="sg-pb__text">Turning intent into a query meant asking the data team. Each small change meant another request and another wait.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="tabset__panel" role="tabpanel" id="pb-biz" aria-labelledby="tab-pb-biz">
+                <article class="sg-pb__card sg-pb__card--biz">
+                  <span class="sg-pb__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg></span>
+                  <div>
+                    <p class="sg-pb__lead">Every audience became a request in the data team&#8217;s queue.</p>
+                    <p class="sg-pb__text">Campaigns waited on queries instead of going out on time, and new targeting ideas went untested.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-p">Here&#8217;s how that played out for Priya.</p>
+      </div>
+      <img class="sg-fig" src="assets/seg/story.png" width="761" height="756" loading="lazy" alt="Priya, a growth marketer at a D2C brand, wants users who were active recently, haven't purchased in 30 days and like healthy food. She explores customer data to pick attributes and events, then has to rely on the data and engineering team, which slows her down and delays the campaign." />
+      <!-- Statement as a request ticket overlapping a faded headline -->
+      <div class="sg-ticket">
+        <p class="sg-ticket__ghost" aria-hidden="true">Another request?</p>
+        <div class="sg-ticket__card">
+          <p class="sg-ticket__to">To: Data team</p>
+          <p class="sg-ticket__text">Every new audience meant a request to the data team.</p>
+        </div>
+      </div>
+
+      <!-- Bridge: the question the approach chapter answers -->
+      <div class="sg-bridge">
+        <span class="sg-bridge__line" aria-hidden="true"></span>
+        <p class="sg-bridge__q">What if the next request never had to leave the marketer&#8217;s hands?</p>
+      </div>
+
+      <!-- Rewind: a line that draws as you scroll, rolling back from screens to the request where the design started -->
+      <div class="sg-rewind" data-component="sg-rewind">
+        <p class="sg-rewind__lead">To answer that,<br /><b>let&#8217;s rewind to the request itself.</b></p>
+        <span class="sg-rewind__dot" aria-hidden="true"></span>
+        <div class="sg-rewind__track" aria-hidden="true"><span class="sg-rewind__fill"></span></div>
+        <div class="sg-rewind__roll" aria-hidden="true">
+          <div class="sg-rewind__words"><span>Screens</span><span>SQL</span><span>Request</span></div>
+        </div>
+        <div class="sg-rewind__end" aria-hidden="true">
+          <span class="sg-rewind__dot"></span>
+          <span class="sg-rewind__note">&#8212; where I started</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 HOW I APPROACHED IT ============ -->
+    <section class="sg-sec" id="approach" data-component="sg-approach">
+      <div class="sg-head">
+        <p class="cs-label">How I approached it</p>
+        <h2 class="cs-h2">To make that possible, I started with the request itself, not with screens</h2>
+        <p class="cs-p">This is how a query only the data team could write became something a marketer could build: five steps, taken before any layout was drawn.</p>
+      </div>
+
+
+      <div class="sg-stage" id="stage-understand">
+        <div class="sg-head">
+          <div class="sg-stage__top">
+            <p class="sg-stage__mark goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-1.svg" alt="" /></p>
+            <h3 class="sg-stage__title"><span class="sg-stage__n">Step 1. </span>Understand <b>who asks</b> for a segment, and <b>who builds it</b></h3>
+          </div>
+          <p class="cs-p sg-step__p">The problem sat between two groups: marketers who knew exactly who they wanted, and the data team who turned that into a query. I started by understanding both sides.</p>
+          <p class="sg-todo">Two or three lines on what you looked at first: the PRD, who you spoke to (marketers, the data team, engineers), and how long the project took.</p>
+        </div>
+      </div>
+
+      <div class="sg-stage" id="stage-goals">
+        <div class="sg-head">
+          <div class="sg-stage__top">
+            <p class="sg-stage__mark goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-2.svg" alt="" /></p>
+            <h3 class="sg-stage__title"><span class="sg-stage__n">Step 2. </span>Set the <b>goals</b> every design decision had to meet</h3>
+          </div>
+          <p class="cs-p sg-step__p">Each one came straight from what marketers and the data team told me.</p>
+        </div>
+        <img class="sg-fig" src="assets/seg/goals.png" width="944" height="227" loading="lazy" alt="Four design goals: no-code creation, readable queries, flexible segments based on events and attributes, and query validation so users know a segment is ready to use." />
+      </div>
+
+      <div class="sg-stage" id="stage-scope">
+        <div class="sg-head">
+          <div class="sg-stage__top">
+            <p class="sg-stage__mark goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-3.svg" alt="" /></p>
+            <h3 class="sg-stage__title"><span class="sg-stage__n">Step 3. </span>Decide what the <b>first version would not do</b></h3>
+          </div>
+          <p class="cs-p sg-step__p">Agreeing early on what to leave out kept the first version focused.</p>
+        </div>
+      <div class="sg-scope">
+        <div class="sg-scope__col">
+          <p class="sg-scope__k">The builder is</p>
+          <ul>
+            <li>For combining what people did (events) with what we know about them (profile details)</li>
+            <li>For marketers who don&#8217;t write SQL</li>
+            <li>For segments that are checked before they are saved</li>
+          </ul>
+        </div>
+        <div class="sg-scope__col sg-scope__col--not">
+          <p class="sg-scope__k">The builder is not</p>
+          <ul>
+            <li>For segments that update on their own over time</li>
+            <li>For relative dates such as &#8220;in the last 7 days&#8221; on profile details</li>
+            <li>For keeping a version history of a segment</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+
+      <div class="sg-stage" id="stage-break">
+        <div class="sg-head">
+          <div class="sg-stage__top">
+            <p class="sg-stage__mark goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><img src="assets/case/hand/goal-4.svg" alt="" /></p>
+            <h3 class="sg-stage__title"><span class="sg-stage__n">Step 4. </span>Follow <b>one request</b> all the way down</h3>
+          </div>
+          <p class="cs-p sg-step__p">I took one everyday request, &#8220;users who added a shirt to their cart in the last 30 days&#8221;, and followed it through three moves: from the marketer&#8217;s words, to the logic underneath, to building blocks a marketer could use.</p>
+        </div>
+        <!-- Each move: a short line, then its visual, stacked vertically -->
+        <div class="zz">
+          <div class="zz__row">
+            <div class="zz__text">
+              <p class="gr-phase__k gr-phase__k--intent"><span class="gr-phase__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span>Capture the intent</p>
+              <p class="zz__p">A marketer describes the audience in <b>plain words</b>, the way they would ask a colleague.</p>
+            </div>
+            <img class="zz__img" src="assets/seg/gr-intent.png" width="840" height="212" loading="lazy" alt="A marketer describes the audience in everyday language: Find users who added shirt to their cart in the last 30 days." />
+          </div>
+
+          <div class="zz__row">
+            <div class="zz__text">
+              <p class="gr-phase__k gr-phase__k--logic"><span class="gr-phase__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg></span>Decode the logic</p>
+              <p class="zz__p">Written as <b>SQL</b>, the same request turns into syntax only the data team can read&#8230;</p>
+            </div>
+            <img class="zz__img" src="assets/seg/gr-sql.png" width="570" height="280" loading="lazy" alt="The request as a SQL query: select user_id from events where event_name is add_to_cart, product category is Shirts, gender is Male, and event time is within the last 30 days." />
+          </div>
+
+          <div class="zz__row zz__row--late">
+            <div class="zz__text">
+              <p class="zz__p">&#8230;and in an existing <b>query editor</b>, it becomes rows of fields, operators and values. Setting the two side by side showed what the interface could simplify without weakening the logic.</p>
+            </div>
+            <img class="zz__img" src="assets/seg/gr-azure.png" width="568" height="455" loading="lazy" alt="The Azure query editor: rows of And/Or, field, operator and value dropdowns for top-level and linked work items." />
+          </div>
+
+          <div class="zz__row">
+            <div class="zz__text">
+              <p class="gr-phase__k gr-phase__k--grammar"><span class="gr-phase__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span>Create a visual grammar</p>
+              <p class="zz__p">Across scenarios, the same four ideas kept repeating: <b>what a user did, who they are, how a rule is checked and when</b>. These became the building blocks.</p>
+            </div>
+            <img class="zz__img" src="assets/seg/gr-chips.png" width="780" height="240" loading="lazy" alt="Four building blocks: Event, User attributes, Conditions and Time range." />
+          </div>
+        </div>
+
+        <!-- The example in the derived structure, shown inside the product's app shell (Figma: Conversations 1836:13010) -->
+        <div class="ds">
+          <div class="ds__frame">
+            <img class="ds__shell" src="assets/seg/app-shell.png" width="1000" height="569" loading="lazy" alt="" />
+            <!-- Header drawn as skeleton bars, matching the side nav blueprint -->
+            <div class="ds__header" aria-hidden="true">
+              <span class="ds__sk ds__sk--sq"></span><span class="ds__sk" style="width:64px"></span><span class="ds__sk" style="width:44px"></span>
+              <span class="ds__gap"></span>
+              <span class="ds__sk" style="width:36px"></span><span class="ds__sk ds__sk--btn"></span><span class="ds__sk ds__sk--sq"></span><span class="ds__sk ds__sk--sq"></span><span class="ds__sk ds__sk--sq"></span>
+            </div>
+            <div class="ds__card" role="img" aria-label="The example in the derived structure: Who, all users; Did, add to cart; Frequency, at least once; When, last 30 days; Where, category is Shirts.">
+              <p class="ds__k">All users where</p>
+              <div class="ds__row" aria-hidden="true">
+                <span class="an-chip"><small>Who</small>All users</span><i>+</i>
+                <span class="an-chip"><small>Did</small>Add to cart</span><i>+</i>
+                <span class="an-chip"><small>Frequency</small>At least once</span><i>+</i>
+                <span class="an-chip"><small>When</small>Last 30 days</span><i>+</i>
+                <span class="an-chip an-chip--where"><small>Where</small>Category is Shirts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-stage" id="stage-sentence">
+        <div class="sg-head">
+          <div class="sg-stage__top">
+            <p class="sg-stage__mark goal__badge" aria-hidden="true"><img src="assets/case/hand/goal-circle.svg" alt="" /><span>5</span></p>
+            <h3 class="sg-stage__title"><span class="sg-stage__n">Step 5. </span>Let marketers build in <b>the order they think</b></h3>
+          </div>
+          <p class="cs-p sg-step__p">Marketers describe an audience as a sentence, not as tables and joins. So the building blocks line up the same way: who did what, how often, when, and with which details.</p>
+        </div>
+        <img class="sg-fig" src="assets/seg/sentence.png" width="910" height="338" loading="lazy" alt="Let users complete the query in the same order they think: All users who did Add to cart more than 1 times within the last 30 days, where Product is Shoes." />
+      </div>
+
+      <p class="sg-process__next">With the goals, the scope and the sentence in place, one question was left: how should all of this sit on a single screen?</p>
+    </section>
+
+    <!-- ============ 03 EXPLORATIONS ============ -->
+    <section class="sg-sec" id="explorations" data-component="sg-iterations">
+      <div class="sg-head">
+        <p class="cs-label">Explorations</p>
+        <h2 class="cs-h2">Finding the right way to structure complex queries</h2>
+        <p class="cs-p">I explored multiple layouts to determine how events, filters, and conditions could work together in a clear and intuitive interface. Each iteration helped me refine the hierarchy, simplify interactions, and make complex query logic easier to follow.</p>
+        <p class="cs-p sg-note">A few explorations that shaped the final direction</p>
+      </div>
+      <img class="sg-fig" src="assets/seg/iterations.png" width="1120" height="815" loading="lazy" alt="Four explorations. A rigid matrix with chips and steppers felt intimidating. Oversized dropdowns created noise and lacked hierarchy. Background variations and dividers separated events from filters. The winner: branch connectors link filters to their parent event, with compact inputs and progressive disclosure." />
+      <div class="sg-head sg-sub">
+        <h3 class="sg-step__title">Why the fourth option won</h3>
+        <p class="sg-todo">One or two lines on how the options were compared: who reviewed or tested them, and what they said that settled it.</p>
+      </div>
+    </section>
+
+    <!-- ============ 04 THE FINAL DESIGN ============ -->
+    <section class="sg-sec" id="design" data-component="sg-steps">
+      <div class="sg-head">
+        <p class="cs-label">The final design</p>
+        <h2 class="cs-h2">How a segment comes together, step by step</h2>
+      </div>
+
+      <div class="sg-step">
+        <div class="sg-head www__text sg-www">
+          <span class="hand hand--find" role="img" aria-label="Find"></span>
+          <h3 class="www__label sg-step__label">A. Select the right data</h3>
+          <p class="cs-p sg-step__p">Browse events, explore user attributes or search across both to find what the audience should be built on.</p>
+        </div>
+        <figure class="an-fig an-fig--main an-fig--focus">
+          <div class="an-fig__wrap">
+            <img class="an-fig__shot" src="assets/seg/fd-data-focus.png" width="800" height="385" loading="lazy" alt="The empty segment builder with the add-rule menu open: a search bar, Events and Attributes tabs, projects on the left, their events in the middle and details for Add to Cart on the right." />
+          </div>
+          <span class="an-curve an-curve--a" style="left:1092px; top:199px; width:118px; height:262px" aria-hidden="true"></span>
+          <span class="an-curve an-curve--b" style="left:1137px; top:440px; width:73px; height:208px" aria-hidden="true"></span>
+          <figcaption class="an-note an-note--free" style="left:1150px; top:139px"><p><b>One search</b> across events, attributes and projects</p></figcaption>
+          <figcaption class="an-note an-note--left" style="left:80px; top:244px"><span class="an-line" style="width:339px"></span><p>Built to scale: a new data source becomes <b>one more tab</b>, not a new menu</p></figcaption>
+          <figcaption class="an-note an-note--left" style="left:80px; top:339px"><span class="an-line" style="width:339px"></span><p>Events are grouped by the <b>project they come from</b>, so large accounts stay easy to browse</p></figcaption>
+          <div class="an-sub">
+            <img src="assets/seg/dd-search.png" width="440" height="272" loading="lazy" alt="Searching for Ad returns matching events, attributes and projects in one grouped list, with details for Add to Cart." />
+          </div>
+          <figcaption class="an-note an-note--left" style="left:399px; top:578px"><span class="an-line" style="width:110px"></span><p>Results come back grouped into <b>events, attributes and projects</b></p></figcaption>
+        </figure>
+      </div>
+
+      <div class="sg-step">
+        <div class="sg-head www__text sg-www">
+          <span class="hand hand--build" role="img" aria-label="Build"></span>
+          <h3 class="www__label sg-step__label">B. Configure the audience logic</h3>
+          <p class="cs-p sg-step__p">Pick the event, how often it happened and the time window, then add properties if needed. Separate entry points for properties, rules and groups keep simple segments light while still supporting advanced logic.</p>
+        </div>
+        <figure class="an-fig an-fig--logic">
+          <div class="ui-panel"><div class="ui-panel__app"><img src="assets/seg/fd-logic-card.png?v=2" width="768" height="317" loading="lazy" alt="The segment builder with one rule in credit_card_project: Click now happened more than 1 times within the last 30 days, where browser is Chrome or Safari, operating system is Linux and location is not Mobile, with 10,345 qualified users and 1,200 qualified events." /></div></div>
+          <figcaption class="an-note an-note--right" style="top:151px"><span class="an-line" style="width:265px"></span><p>A rule reads left to right: <b>the event, how often</b> it happened and <b>in what time window</b></p></figcaption>
+          <figcaption class="an-note an-note--left" style="left:80px; top:213px"><span class="an-line" style="width:221px"></span><p>Properties <b>branch off their event</b>, joined by AND, each with its own duplicate and delete</p></figcaption>
+        </figure>
+        <div class="sg-sub">
+          <h4 class="sg-sub__title">Add who they are, not only what they did</h4>
+          <p class="cs-p">Say the audience is people who clicked in the last 30 days <b>and</b> like healthy food. The second part is something we know about a person, not something they did. So it goes into the same group as a profile attribute, and only needs a value to match, with no frequency or time window.</p>
+        </div>
+        <div class="ui-panel ui-panel--compose" role="img" aria-label="The segment builder with a Click now event rule and its properties. Below the + Rule button, the add-rule menu is open on the User attributes tab, listing standard, custom and computed attributes with details for Customer_id."><div class="ui-panel__app">
+          <img src="assets/seg/fd-logic-card.png?v=2" width="768" height="317" loading="lazy" alt="" />
+          <span class="ui-panel__active" aria-hidden="true"></span>
+          <img class="ui-panel__pop" src="assets/seg/dd-attrs-tight.png" width="390" height="189" loading="lazy" alt="" />
+        </div></div>
+      </div>
+
+      <div class="sg-step">
+        <div class="sg-head www__text sg-www">
+          <span class="hand hand--scan" role="img" aria-label="Scan"></span>
+          <h3 class="www__label sg-step__label">C. Review the query</h3>
+          <p class="cs-p sg-step__p">Finished rules collapse into plain sentences, while the active one stays editable. Indentation, AND labels and project tags keep the structure easy to scan and safe to reopen.</p>
+        </div>
+        <div class="ui-panel ui-panel--review" role="img" aria-label="The segment builder in summary view: Click now happened more than 2 times between 18 and 24 Dec 2025, with operating system, browser and location filters joined by AND, with edit and delete buttons; and Membership status is Active, tagged Attribute."><div class="ui-panel__app">
+          <img src="assets/seg/fd-review-card.png" width="768" height="322" loading="lazy" alt="" />
+          <span class="rv-cover" aria-hidden="true"></span>
+          <img class="rv-l" src="assets/seg/fd-review-row-l.png" width="466" height="90" loading="lazy" alt="" />
+          <img class="rv-r" src="assets/seg/fd-review-row-r.png" width="67" height="90" loading="lazy" alt="" />
+        </div></div>
+      </div>
+
+      <div class="sg-step">
+        <div class="sg-head www__text sg-www">
+          <span class="hand hand--check" role="img" aria-label="Check"></span>
+          <h3 class="www__label sg-step__label">D. Know who qualifies, as you build</h3>
+          <p class="cs-p sg-step__p">Every condition updates the matching users right below the query, so marketers can check their logic and feel confident before creating the segment.</p>
+        </div>
+        <figure class="an-fig an-fig--logic">
+          <div class="ui-panel ui-panel--review" role="img" aria-label="The finished segment in summary view: Click now happened more than 2 times between 18 and 24 Dec 2025 with operating system, browser and location filters, and Membership status is Active, with 10,345 qualified users and 1,200 qualified events. Below it, a table showing 100 of 1,200 recent records lists each matching user with their event, attribute and date."><div class="ui-panel__app">
+          <img src="assets/seg/fd-review-card.png" width="768" height="322" loading="lazy" alt="" />
+          <span class="rv-cover" aria-hidden="true"></span>
+          <img class="rv-l" src="assets/seg/fd-review-row-l.png" width="466" height="90" loading="lazy" alt="" />
+          <img class="rv-r" src="assets/seg/fd-review-row-r.png" width="67" height="90" loading="lazy" alt="" />
+          <img class="qf-shot qf-rec" src="assets/seg/fd-qualify-records.png" width="768" height="221" loading="lazy" alt="" />
+        </div></div>
+          <figcaption class="an-note an-note--right" style="top:77px"><span class="an-line" style="width:161px"></span><p><b>Qualified users and events</b> update with every condition you add</p></figcaption>
+          <figcaption class="an-note an-note--left" style="left:80px; top:456px"><span class="an-line" style="width:63px"></span><p>Each matching user with <b>the event and attribute that qualified them</b>, refreshed as the query changes</p></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 05 REFLECTION ============ -->
+    <section class="sg-sec" id="reflection" data-component="sg-outcome">
+      <div class="sg-wrap">
+        <p class="cs-label">That&#8217;s a wrap</p>
+        <p class="sg-wrap__big">Segment building moved from a data-team request to something marketers do themselves.</p>
+        <p class="sg-todo">Add the outcome here: early feedback, a quote, or a number (for example segments created without the data team, or time to build one). Change the line above if it overstates what happened.</p>
+      </div>
+      <div class="sg-head sg-sub">
+        <p class="cs-label">Reflection</p>
+        <h2 class="cs-h2">What I learned and where it goes next</h2>
+        <p class="sg-todo">Learnings: one or two things you would do differently.</p>
+        <p class="sg-hmw__intro">Questions I&#8217;d like to explore next:</p>
+        <ol class="sg-hmw">
+          <li><span>How might</span> segments refresh on their own as people&#8217;s behaviour changes?</li>
+          <li><span>How might</span> profile details support relative dates, like &#8220;joined in the last 7 days&#8221;?</li>
+        </ol>
+        <p class="sg-todo">Both questions come from the PRD&#8217;s out-of-scope list. Keep them only if they&#8217;re fine to mention.</p>
+      </div>
+    </section>
+
+    <!-- ============ UP NEXT ============ -->
+    <section class="cs-next sg-next" data-component="cs-next">
+      <p class="cs-label">You&#8217;ve reached the end. Here&#8217;s another story</p>
+      <article class="case" data-component="case-card">
+        <a class="case__link" href="campaign-creation.html" aria-label="Read the case study: Redesigning a campaign creation journey"></a>
+        <div class="case__text">
+          <h3>Redesigning a campaign creation journey</h3>
+          <p>Helo.ai helps businesses send marketing messages over SMS, WhatsApp and RCS. I turned a 6-screen setup into 3 simple decisions.</p>
+          <ul class="tags"><li>B2B</li><li>Marketing</li><li>Saas</li></ul>
+        </div>
+        <div class="case__shot"><img src="assets/shot-campaign.png" alt="Campaign creation: add audience, configure channels and AI-optimised send time, with a live message preview" /></div>
+        <span class="case__icon case__icon--right case__icon--blue"><img src="assets/chat.png" alt="" /></span>
+      </article>
+      <a class="cs-back" href="index.html#work">← Back to my work</a>
+    </section>
+  </main>
+
+  <script src="case-study.js?v=14"></script>
+</body>
+</html>
